@@ -1,0 +1,49 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go build artifacts
+/build/
+/bin/
+/dist/
+/coverage/
+/*.log
+
+# Go coverage files
+*.cover
+*.cov
+coverage.txt
+
+# Dependency directories (if not vendored)
+vendor/
+
+# Config / secrets
+*.env
+.env.*
+*.local
+config.yaml
+config.local.yaml
+secrets.*
+*.key
+*.pem
+
+# IDE / editor
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Node / frontend (if present)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+dist/
+.build/
