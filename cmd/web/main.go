@@ -1,28 +1,36 @@
 package main
 
 import (
-	"html/template"
 	"log"
 	"net/http"
 )
 
-func home(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./web/templates/layout.html")
-	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-	err = tmpl.Execute(w, nil)
-	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-	}
-}
-
 func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", home)
+	r := NewRenderer("./web/templates")
+	app := &App{Renderer: r}
 
-	log.Println("Starting server on :4000")
-	err := http.ListenAndServe(":4000", mux)
-	log.Fatal(err)
+	mux := http.NewServeMux()
+
+	// full page
+	mux.HandleFunc("/", app.Home)
+
+	// partials for HTMX
+	mux.HandleFunc("/docs/start", app.GettingStarted)
+	mux.HandleFunc("/docs/basics", app.LanguageBasics)
+	mux.HandleFunc("/docs/errors", app.EgoErrors)
+	mux.HandleFunc("/docs/functions", app.Functions)
+	mux.HandleFunc("/docs/structures", app.Structures)
+	mux.HandleFunc("/docs/scope", app.ScopeAndLifetime)
+	mux.HandleFunc("/docs/control", app.ControlFlow)
+	mux.HandleFunc("/docs/expressions", app.ExpressionsAndOperators)
+	mux.HandleFunc("/docs/stdlib", app.StandardLibrary)
+	mux.HandleFunc("/docs/variables", app.VariablesAndConstants)
+	mux.HandleFunc("/docs/values", app.ValuesAndTypes)
+
+	// static files
+	fileServer := http.FileServer(http.Dir("./web/static/"))
+	mux.Handle("/static/", http.StripPrefix("/static/", fileServer))
+
+	log.Println("listening on :4000")
+	log.Fatal(http.ListenAndServe(":4000", mux))
 }
