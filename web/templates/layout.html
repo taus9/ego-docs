@@ -1,3 +1,4 @@
+{{define "layout"}}
 <!doctype html>
 <html lang="en">
   <head>
@@ -130,6 +131,7 @@
           hx-swap="innerHTML"
           class="flex items-center gap-3 rounded-lg px-3 py-2
                  text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
+          <span class="h-2 w-2 rounded-full bg-gray-500"></span>
           Data Structures
         </a>
 
@@ -172,11 +174,11 @@
       <div class="max-w-4xl mx-auto">
         <!-- This loads Getting Started ONCE, without being swapped itself -->
         <div
-          hx-get="/docs/getting-started"
-          hx-trigger="load once"
-          hx-target="#main-content"
-          hx-swap="innerHTML"
-        ></div>
+    hx-get="/docs/start"
+    hx-trigger="load once"
+    hx-target="#main-content"
+    hx-swap="innerHTML"
+  ></div>
 
         <!-- This is the only thing that gets replaced -->
         <div id="main-content"></div>
@@ -186,3 +188,4 @@
     <script src="/static/nav.js"></script>
   </body>
 </html>
+{{end}}
