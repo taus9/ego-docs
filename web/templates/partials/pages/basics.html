@@ -2,7 +2,7 @@
   <h1 class="text-3xl md:text-4xl font-bold tracking-tight">
     Language Basics
   </h1>
-  <p class="mt-3 text-gray-300 max-w-2xl">
+  <p class="mt-3 text-lg text-gray-300 max-w-2xl">
     This page introduces the core mental model for writing Ego programs:
     how files are structured, how statements and comments work, and how
     you name things with identifiers.
@@ -12,13 +12,13 @@
 <!-- Program Structure -->
 <section class="mb-10">
   <h2 class="text-2xl font-bold">Program Structure</h2>
-  <p class="mt-2 text-gray-300">
+  <p class="mt-2 text-lg text-gray-300">
     An Ego program is just a sequence of statements executed from top to
     bottom. There is no special project format or module system required
     to get started.
   </p>
 
-  <div class="mt-4 space-y-3 text-sm text-gray-300">
+  <div class="mt-4 space-y-3 text-base text-gray-300">
     <div>
       <span class="font-semibold">Statements -</span>
       Each line normally contains a single statement: an assignment,
@@ -48,7 +48,7 @@
 <!--Comments -->
 <section class="mb-10">
   <h2 class="text-2xl font-bold">Comments</h2>
-  <p class="mt-2 text-gray-300">
+  <p class="mt-2 text-lg text-gray-300">
     Comments are ignored by the interpreter and are only for humans.
     Use them to explain intent, assumptions, or non-obvious behavior.
   </p>
@@ -58,14 +58,14 @@
       <div class="text-sm text-gray-300 font-medium">comments.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-sm overflow-x-auto"><code class="text-gray-200"># this is a line comment
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"># this is a line comment
 x := 10  # comments can follow code on the same line
 
 # the interpreter ignores everything after '#'
 put(x)</code></pre>
   </div>
 
-  <div class="mt-4 space-y-3 text-sm text-gray-300">
+  <div class="mt-4 space-y-3 text-base text-gray-300">
     <div>
       <span class="font-semibold">Line comments.</span>
       Ego uses <code class="text-gray-200">#</code> for line comments.
@@ -92,7 +92,7 @@ put(x)</code></pre>
 <!--Identifiers -->
 <section class="mb-10">
   <h2 class="text-2xl font-bold">Identifiers</h2>
-  <p class="mt-2 text-gray-300">
+  <p class="mt-2 text-lg text-gray-300">
     Identifiers are the names you give to variables, functions, and
     other user-defined symbols.
   </p>
@@ -102,7 +102,7 @@ put(x)</code></pre>
       <div class="text-sm text-gray-300 font-medium">identifiers.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-sm overflow-x-auto"><code class="text-gray-200">name     := "Ego"
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">name     := "Ego"
 answer42 := 42
 _is_temp := true
 $PI      := 3.14
@@ -110,7 +110,7 @@ $PI      := 3.14
 put(name + ' is ' + str(answer42))</code></pre>
   </div>
 
-  <div class="mt-4 space-y-3 text-sm text-gray-300">
+  <div class="mt-4 space-y-3 text-base text-gray-300">
     <div>
       <span class="font-semibold">Valid characters.</span>
       Identifiers start with a letter <code class="text-gray-200">a-z</code>
@@ -145,5 +145,28 @@ put(name + ' is ' + str(answer42))</code></pre>
       purposes (such as positional parameters passed to a script). Avoid
       using these for your own variables.
     </div>
+  </div>
+</section>
+
+<!-- Navigation: Previous / Next -->
+<section class="mt-12 pt-8 border-t border-gray-800 flex flex-col items-center text-center text-base gap-3">
+  <div class="flex flex-col sm:flex-row gap-3">
+    <button
+      type="button"
+      onclick="document.getElementById('link-0')?.click()"
+      class="inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 bg-gray-900 text-gray-200 border border-gray-700 hover:bg-gray-800 cursor-pointer w-full sm:w-auto"
+    >
+      <span aria-hidden="true">&larr;</span>
+      <span class="font-medium">Getting Started</span>
+    </button>
+
+    <button
+      type="button"
+      onclick="document.getElementById('link-2')?.click()"
+      class="inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 bg-gray-800 text-gray-100 hover:bg-gray-700 cursor-pointer w-full sm:w-auto"
+    >
+      <span class="font-medium">Values and Types</span>
+      <span aria-hidden="true">&rarr;</span>
+    </button>
   </div>
 </section>

@@ -2,7 +2,7 @@
   <h1 class="text-3xl md:text-4xl font-bold tracking-tight">
     Getting Started
   </h1>
-  <p class="mt-3 text-gray-300 max-w-2xl">
+  <p class="mt-3 text-lg text-gray-300 max-w-2xl">
     Ego is a small, dynamically typed scripting language focused on simplicity and explicit behavior.
     It uses a minimal syntax, clear control flow, and a straightforward execution model. Ego is designed for scripting, experimentation, and learning how languages work.
   </p>
@@ -13,7 +13,7 @@
   <div class="rounded-2xl border border-gray-800 bg-gray-950 p-5">
     <div class="text-sm text-gray-400">1) Install</div>
     <div class="mt-1 font-semibold">Get the CLI</div>
-    <p class="mt-2 text-sm text-gray-300">
+    <p class="mt-2 text-base text-gray-300">
       Install or build the <code class="text-gray-200">ego</code> command so you can run <code
         class="text-gray-200">.ego</code> files.
     </p>
@@ -25,7 +25,7 @@
   <div class="rounded-2xl border border-gray-800 bg-gray-950 p-5">
     <div class="text-sm text-gray-400">2) Run</div>
     <div class="mt-1 font-semibold">Execute scripts</div>
-    <p class="mt-2 text-sm text-gray-300">
+    <p class="mt-2 text-base text-gray-300">
       Run files with the CLI and use the REPL for quick experiments.
     </p>
     <a href="#hello" class="mt-4 inline-flex text-sm text-indigo-400 hover:text-indigo-300 cursor-pointer">
@@ -36,7 +36,7 @@
   <div class="rounded-2xl border border-gray-800 bg-gray-950 p-5">
     <div class="text-sm text-gray-400">3) Learn</div>
     <div class="mt-1 font-semibold">Language basics</div>
-    <p class="mt-2 text-sm text-gray-300">
+    <p class="mt-2 text-base text-gray-300">
       Jump to the language basics to start learning how to code with Ego.
     </p>
     <a
@@ -51,7 +51,7 @@
 <!-- Install -->
 <section id="install" class="mb-12 scroll-mt-20">
   <h2 class="text-2xl font-bold">Install</h2>
-  <p class="mt-2 text-gray-300">
+  <p class="mt-2 text-lg text-gray-300">
     Ego is still early, so installation typically means building from source (for now). You will need to have the <a class="text-purple-400" href="https://go.dev" target="_blank">Go</a> compiler installed.
   </p>
 
@@ -60,7 +60,7 @@
       <div class="text-sm text-gray-300 font-medium">Build from source</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-sm overflow-x-auto"><code class="text-gray-200"># clone the repo
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"># clone the repo
 git clone https://github.com/taus9/ego.git
 cd ego
 
@@ -71,7 +71,7 @@ go build
 ./ego version</code></pre>
   </div>
 
-  <div class="mt-4 text-sm text-gray-400">
+  <div class="mt-4 text-base text-gray-400">
     Tip: put the built binary somewhere on your <code class="text-gray-200">PATH</code> so you can run <code
       class="text-gray-200">ego</code> anywhere.
   </div>
@@ -80,7 +80,7 @@ go build
 <!-- Hello World -->
 <section id="hello" class="mb-12 scroll-mt-20">
   <h2 class="text-2xl font-bold">Hello, World</h2>
-  <p class="mt-2 text-gray-300">
+  <p class="mt-2 text-lg text-gray-300">
     Create a file named <code class="text-gray-200">hello.ego</code>:
   </p>
 
@@ -89,7 +89,7 @@ go build
       <div class="text-sm text-gray-300 font-medium">hello.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-sm overflow-x-auto"><code class="text-gray-200"># run hello.ego
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"># run hello.ego
 ego ./examples/hello.ego
     </code></pre>
   </div>
@@ -97,16 +97,12 @@ ego ./examples/hello.ego
 
 <!-- Next: Language Basics -->
 <section class="mt-12 pt-8 border-t border-gray-800 flex flex-col items-center text-center text-base gap-3">
-  <div>
-    <div class="uppercase tracking-wide text-xs text-gray-500">Next up</div>
-    <div class="mt-1 text-lg font-semibold text-gray-100">Language Basics</div>
-  </div>
   <button
     type="button"
     onclick="document.getElementById('link-1')?.click()"
     class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-gray-800 text-gray-100 hover:bg-gray-700 cursor-pointer"
   >
-    <span class="font-medium">Next</span>
+    <span class="font-medium">Language Basics</span>
     <span aria-hidden="true" class="text-base">
       &rarr;
     </span>

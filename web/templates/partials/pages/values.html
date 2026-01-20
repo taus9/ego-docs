@@ -1,3 +1,167 @@
-<section>
-  <h1 class="text-3xl font-bold mb-4">Values and Types</h1>
+<section class="mb-10">
+  <h1 class="text-3xl md:text-4xl font-bold tracking-tight">
+    Values and Types
+  </h1>
+  <p class="mt-3 text-lg text-gray-300 max-w-2xl">
+    This page explains how Ego represents values at runtime, which
+    primitive types exist, and how dynamic typing and truthiness work.
+  </p>
+</section>
+
+<!-- 4.1 Primitive Types -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Primitive Types</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Ego has a small set of built-in value types. More complex
+    data structures are built on top of these primitives.
+  </p>
+
+  <div class="mt-4 grid md:grid-cols-2 gap-4 text-base text-gray-300">
+    <div class="rounded-2xl border border-gray-800 bg-gray-950 p-5">
+      <h3 class="text-lg font-semibold">Integer</h3>
+      <p class="mt-2">
+        Whole numbers without a fractional component.
+        Examples: <code class="text-gray-200">0</code>,
+        <code class="text-gray-200">42</code>,
+        <code class="text-gray-200">-7</code>.
+      </p>
+    </div>
+
+    <div class="rounded-2xl border border-gray-800 bg-gray-950 p-5">
+      <h3 class="text-lg font-semibold">Float</h3>
+      <p class="mt-2">
+        Numbers with a decimal point.
+        Examples: <code class="text-gray-200">3.14</code>,
+        <code class="text-gray-200">0.0</code>,
+        <code class="text-gray-200">-1.5</code>.
+      </p>
+    </div>
+
+    <div class="rounded-2xl border border-gray-800 bg-gray-950 p-5">
+      <h3 class="text-lg font-semibold">String</h3>
+      <p class="mt-2">
+        Text values enclosed in single quotes.
+        Examples: <code class="text-gray-200">'hello'</code>,
+        <code class="text-gray-200">''</code>.
+      </p>
+    </div>
+
+    <div class="rounded-2xl border border-gray-800 bg-gray-950 p-5">
+      <h3 class="text-lg font-semibold">Boolean</h3>
+      <p class="mt-2">
+        Logical truth values: <code class="text-gray-200">true</code>
+        and <code class="text-gray-200">false</code>.
+      </p>
+    </div>
+
+    <div class="rounded-2xl border border-gray-800 bg-gray-950 p-5 md:col-span-2">
+      <h3 class="text-lg font-semibold">Nil</h3>
+      <p class="mt-2">
+        A special value that represents "no value" or "nothing".
+        It is distinct from <code class="text-gray-200">false</code> and
+        from an empty string.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 4.2 Dynamic Typing -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Dynamic Typing</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Ego is dynamically and strongly typed. Values carry their type at
+    runtime, and variables can hold any type, but invalid operations are
+    still rejected.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">dynamic.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 41      # integer
+x = 3.14     # now a float
+x = "hello" # now a string
+
+# still strong typing: this is an error
+x = "hi" + 1  # cannot add string and integer</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Runtime types.</span>
+      Each value knows its type at runtime. Operations check these types
+      when you execute the program.
+    </div>
+
+    <div>
+      <span class="font-semibold">Type changes.</span>
+      The same variable can hold an integer, then a string, then a
+      boolean. Rebinding a different type is allowed.
+    </div>
+
+    <div>
+      <span class="font-semibold">Strong typing.</span>
+      Ego does not silently coerce unrelated types. You cannot, for
+      example, add a string and an integer without converting one side
+      explicitly.
+    </div>
+
+    <div>
+      <span class="font-semibold">Invalid operations.</span>
+      When you try to use an operator with incompatible types, Ego
+      reports a runtime error instead of guessing what you meant.
+    </div>
+  </div>
+</section>
+
+<!-- 4.3 Truthiness -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Truthiness</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    In conditional contexts, some values count as "true" and others as
+    "false". This is called truthiness.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">truthiness.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">if 0 
+  put('0 is truthy')
+;
+
+if ""
+  put('empty string is truthy')
+;
+
+if nil 
+  put('this never runs')
+;</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">True values.</span>
+      All values are truthy except a small set of falsey values.
+      Non-zero numbers, non-empty strings, and any other non-nil value
+      evaluate to true.
+    </div>
+
+    <div>
+      <span class="font-semibold">False values.</span>
+      The boolean <code class="text-gray-200">false</code> and
+      <code class="text-gray-200">nil</code> are falsey. They cause
+      conditions to be skipped.
+    </div>
+
+    <div>
+      <span class="font-semibold">Nil behavior.</span>
+      <code class="text-gray-200">nil</code> represents "no value" and is
+      always falsey in conditionals. It is not equal to
+      <code class="text-gray-200">false</code>, but behaves similarly when
+      used in <code class="text-gray-200">if</code> and other checks.
+    </div>
+  </div>
 </section>
