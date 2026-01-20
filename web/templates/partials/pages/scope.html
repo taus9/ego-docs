@@ -3,10 +3,192 @@
     Scope and Lifetime
   </h1>
   <p class="mt-3 text-lg text-gray-300 max-w-2xl">
-    This page will explain where variables are visible in Ego programs,
-    how long they live, and how different kinds of scopes (such as
-    blocks and functions) interact.
+    This page explains where variables are visible in Ego programs,
+    how long they live, and how different kinds of scopes (global,
+    function, and block) interact.
   </p>
+</section>
+
+<!-- 13.1 Global Scope -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Global Scope</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    The global scope is the outermost level of an Ego program. Values
+    defined here are visible to all functions and blocks, unless
+    shadowed by a more local binding.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">global_scope.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">greeting := 'hello'
+
+:say
+  put(greeting)
+;
+
+say()</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Defined at the top level.</span>
+      Any variable or function declared outside of another function or
+      block belongs to the global scope.
+    </div>
+
+    <div>
+      <span class="font-semibold">Visible everywhere.</span>
+      Global bindings can be read from inside any function or block
+      unless a local variable with the same name shadows them.
+    </div>
+
+    <div>
+      <span class="font-semibold">Lifetime.</span>
+      Global variables exist for the entire lifetime of the program,
+      from startup until the program exits.
+    </div>
+  </div>
+</section>
+
+<!-- 13.2 Function Scope -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Function Scope</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Each function has its own local scope. Parameters and variables
+    declared inside a function are not visible outside that function.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">function_scope.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:add a, b
+  result := a + b
+  put(result)
+;
+
+add(1, 2)
+
+put(result)  # error: result is not in scope here</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Parameters.</span>
+      Function parameters are local names that only exist while the
+      function is running.
+    </div>
+
+    <div>
+      <span class="font-semibold">Locals.</span>
+      Variables declared with
+      <code class="text-gray-200">:=</code> inside a function belong to
+      that function&rsquo;s scope and are not accessible from the
+      outside.
+    </div>
+
+    <div>
+      <span class="font-semibold">Shadowing globals.</span>
+      A local variable can reuse a global name, temporarily hiding the
+      global binding inside the function body.
+    </div>
+  </div>
+</section>
+
+<!-- 13.3 Block Scope -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Block Scope</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Blocks introduced by control flow, such as <code class="text-gray-200">if</code>
+    and <code class="text-gray-200">for</code>, can also create their
+    own inner scopes for variables declared inside them.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">block_scope.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 1
+
+if true
+  y := 2
+  put(x)
+  put(y)
+;
+
+put(x)
+put(y)  # error: y only exists inside the if block</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Inner visibility.</span>
+      Code inside a block can see variables declared in outer scopes,
+      including global and function-level bindings.
+    </div>
+
+    <div>
+      <span class="font-semibold">Block-local names.</span>
+      Variables declared inside a block are not visible after the block
+      ends.
+    </div>
+
+    <div>
+      <span class="font-semibold">Loop scopes.</span>
+      Loop bodies behave like blocks: variables declared inside the loop
+      are scoped to the loop body.
+    </div>
+  </div>
+</section>
+
+<!-- 13.4 Variable Lifetime -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Variable Lifetime</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Lifetime describes how long a variable&rsquo;s binding exists at
+    runtime, which is closely tied to its scope.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">lifetime.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:counter
+  i := 0
+  i = i + 1
+  put(i)
+;
+
+counter()  # prints 1
+counter()  # prints 1 again; i is new each call</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Global lifetime.</span>
+      Global variables are allocated when the program starts and are
+      kept alive until the program exits.
+    </div>
+
+    <div>
+      <span class="font-semibold">Function locals.</span>
+      Local variables inside a function are created when the function is
+      called and discarded when it returns.
+    </div>
+
+    <div>
+      <span class="font-semibold">Block locals.</span>
+      Variables declared in a block exist only while execution is
+      inside that block; after the block ends, they are no longer
+      accessible.
+    </div>
+  </div>
 </section>
 
 <!-- Navigation: Previous -->
