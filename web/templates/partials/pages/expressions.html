@@ -1,3 +1,223 @@
-<section>
-  <h1 class="text-3xl font-bold mb-4">Expressions and Operators</h1>
+<section class="mb-10">
+  <h1 class="text-3xl md:text-4xl font-bold tracking-tight">
+    Expressions and Operators
+  </h1>
+  <p class="mt-3 text-lg text-gray-300 max-w-2xl">
+    This page shows how to combine values with operators to compute new
+    results, how comparisons and logical operators work, and how
+    precedence affects evaluation.
+  </p>
+</section>
+
+<!-- 6.1 Arithmetic Operators -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Arithmetic Operators</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Ego supports the usual arithmetic operators on numbers:
+    <code class="text-gray-200">+</code>,
+    <code class="text-gray-200">-</code>,
+    <code class="text-gray-200">*</code>,
+    <code class="text-gray-200">/</code>, and
+    <code class="text-gray-200">%</code>.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">arith.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">a := 10
+b := 3
+
+sum  := a + b
+sub  := a - b
+prod := a * b
+quot := a / b
+mod  := a % b</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Integer vs float behavior.</span>
+      When both operands are integers, <code class="text-gray-200">/</code>
+      performs integer division. If either side is a float, arithmetic
+      produces a float result. The <code class="text-gray-200">%</code>
+      operator only works on integers.
+    </div>
+  </div>
+</section>
+
+<!-- 6.2 Comparison Operators -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Comparison Operators</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Comparisons produce boolean results and can be combined in
+    conditions.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">compare.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 10
+y := 20
+
+put(x == y)  # false
+put(x != y)  # true
+put(x < y)   # true
+put(x <= 10) # true
+put(y > x)   # true
+put(y >= 20) # true</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Operators.</span>
+      Ego provides <code class="text-gray-200">==</code>,
+      <code class="text-gray-200">!=</code>,
+      <code class="text-gray-200">&lt;</code>,
+      <code class="text-gray-200">&gt;</code>,
+      <code class="text-gray-200">&lt;=</code>, and
+      <code class="text-gray-200">&gt;=</code>.
+    </div>
+  </div>
+</section>
+
+<!-- 6.3 Logical and Prefix Operators -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Logical and Prefix Operators</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Logical operators combine boolean expressions, and prefix operators
+    let you negate booleans or numbers.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">logic.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">a := true
+b := false
+
+put(a and b) # false
+put(a or b)  # true
+
+# prefix operators
+put(!a)      # false
+put(!b)      # true
+
+x := 5
+y := -x     # numeric negation</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Logical operators.</span>
+      Use <code class="text-gray-200">and</code> and
+      <code class="text-gray-200">or</code> to combine boolean
+      expressions. They work with the usual truth tables.
+    </div>
+
+    <div>
+      <span class="font-semibold">Prefix <code class="text-gray-200">!</code>.</span>
+      The <code class="text-gray-200">!</code> operator negates a boolean:
+      <code class="text-gray-200">!true</code> is
+      <code class="text-gray-200">false</code>, and vice versa.
+    </div>
+
+    <div>
+      <span class="font-semibold">Prefix <code class="text-gray-200">-</code>.</span>
+      The unary <code class="text-gray-200">-</code> operator negates a
+      numeric value, turning positive numbers into negative ones and
+      vice versa.
+    </div>
+
+    <div>
+      <span class="font-semibold">Precedence with logical operators.</span>
+      The <code class="text-gray-200">!</code> prefix binds more tightly
+      than <code class="text-gray-200">and</code>, which in turn binds
+      more tightly than <code class="text-gray-200">or</code>.
+    </div>
+  </div>
+</section>
+
+<!-- 6.4 Operator Precedence -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Operator Precedence</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Operator precedence determines which parts of an expression are
+    evaluated first. Parentheses can always be used to make the intended
+    order explicit.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">precedence.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 1 + 2 * 3      # 1 + (2 * 3)
+y := (1 + 2) * 3    # grouped explicitly
+
+ok := !false and 1 &lt; 2 or false</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Precedence table (high to low).</span>
+      <code class="text-gray-200">-x</code>,
+      <code class="text-gray-200">!x</code> →
+      <code class="text-gray-200">*</code>,
+      <code class="text-gray-200">/</code>,
+      <code class="text-gray-200">%</code> →
+      <code class="text-gray-200">+</code>,
+      <code class="text-gray-200">-</code> → comparisons
+      (<code class="text-gray-200">==</code>,
+      <code class="text-gray-200">!=</code>,
+      <code class="text-gray-200">&lt;</code>,
+      <code class="text-gray-200">&gt;</code>,
+      <code class="text-gray-200">&lt;=</code>,
+      <code class="text-gray-200">&gt;=</code>) →
+      <code class="text-gray-200">and</code> →
+      <code class="text-gray-200">or</code>.
+    </div>
+
+    <div>
+      <span class="font-semibold">Associativity.</span>
+      Most binary operators are left-associative, so
+      <code class="text-gray-200">a - b - c</code> is interpreted as
+      <code class="text-gray-200">(a - b) - c</code>.
+    </div>
+
+    <div>
+      <span class="font-semibold">Disallowed expressions.</span>
+      Chained assignments like
+      <code class="text-gray-200">a = b = 1</code> are not allowed; the
+      left-hand side of <code class="text-gray-200">=</code> must be a
+      single assignable location.
+    </div>
+  </div>
+</section>
+
+<!-- Navigation: Previous / Next -->
+<section class="mt-12 pt-8 border-t border-gray-800 flex flex-col items-center text-center text-base gap-3">
+  <div class="flex flex-col sm:flex-row gap-3">
+    <button
+      type="button"
+      onclick="document.getElementById('link-3')?.click()"
+      class="inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 bg-gray-900 text-gray-200 border border-gray-700 hover:bg-gray-800 cursor-pointer w-full sm:w-auto"
+    >
+      <span aria-hidden="true">&larr;</span>
+      <span class="font-medium">Variables and Constants</span>
+    </button>
+
+    <button
+      type="button"
+      onclick="document.getElementById('link-5')?.click()"
+      class="inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 bg-gray-800 text-gray-100 hover:bg-gray-700 cursor-pointer w-full sm:w-auto"
+    >
+      <span class="font-medium">Control Flow</span>
+      <span aria-hidden="true">&rarr;</span>
+    </button>
+  </div>
 </section>
