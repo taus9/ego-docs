@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+    <meta name="htmx-config" content='{"scrollBehavior":"smooth"}' />
     <title>Ego - A Language</title>
   </head>
 
@@ -58,7 +59,7 @@
         id="link-0"
         hx-get="/docs/start"
         hx-target="#main-content"
-        hx-swap="innerHTML"
+        hx-swap="innerHTML show:top"
          class="flex items-center gap-3 rounded-lg px-3 py-2
                  bg-gray-800 text-white font-medium cursor-pointer"
         >
@@ -70,7 +71,7 @@
           id="link-1"
           hx-get="/docs/basics"
           hx-target="#main-content"
-          hx-swap="innerHTML"
+          hx-swap="innerHTML show:top"
           class="flex items-center gap-3 rounded-lg px-3 py-2
                  text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
           <span class="h-2 w-2 rounded-full bg-gray-500"></span>
@@ -81,7 +82,7 @@
           id="link-2"
           hx-get="/docs/values"
           hx-target="#main-content"
-          hx-swap="innerHTML"
+          hx-swap="innerHTML show:top"
           class="flex items-center gap-3 rounded-lg px-3 py-2
                  text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
           <span class="h-2 w-2 rounded-full bg-gray-500"></span>
@@ -92,7 +93,7 @@
           id="link-3"
           hx-get="/docs/variables"
           hx-target="#main-content"
-          hx-swap="innerHTML"
+          hx-swap="innerHTML show:top"
           class="flex items-center gap-3 rounded-lg px-3 py-2
                  text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
           <span class="h-2 w-2 rounded-full bg-gray-500"></span>
@@ -103,7 +104,7 @@
           id="link-4"
           hx-get="/docs/expressions"
           hx-target="#main-content"
-          hx-swap="innerHTML"
+          hx-swap="innerHTML show:top"
           class="flex items-center gap-3 rounded-lg px-3 py-2
                  text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
           <span class="h-2 w-2 rounded-full bg-gray-500"></span>
@@ -114,7 +115,7 @@
           id="link-5"
           hx-get="/docs/control"
           hx-target="#main-content"
-          hx-swap="innerHTML"
+          hx-swap="innerHTML show:top"
           class="flex items-center gap-3 rounded-lg px-3 py-2
                  text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
           <span class="h-2 w-2 rounded-full bg-gray-500"></span>
@@ -125,7 +126,7 @@
           id="link-6"
           hx-get="/docs/functions"
           hx-target="#main-content"
-          hx-swap="innerHTML"
+          hx-swap="innerHTML show:top"
           class="flex items-center gap-3 rounded-lg px-3 py-2
                  text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
           <span class="h-2 w-2 rounded-full bg-gray-500"></span>
@@ -136,7 +137,7 @@
           id="link-7"
           hx-get="/docs/structures"
           hx-target="#main-content"
-          hx-swap="innerHTML"
+          hx-swap="innerHTML show:top"
           class="flex items-center gap-3 rounded-lg px-3 py-2
                  text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
           <span class="h-2 w-2 rounded-full bg-gray-500"></span>
@@ -147,7 +148,7 @@
           id="link-8"
           hx-get="/docs/stdlib"
           hx-target="#main-content"
-          hx-swap="innerHTML"
+          hx-swap="innerHTML show:top"
           class="flex items-center gap-3 rounded-lg px-3 py-2
                  text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
           <span class="h-2 w-2 rounded-full bg-gray-500"></span>
@@ -158,7 +159,7 @@
           id="link-9"
           hx-get="/docs/errors"
           hx-target="#main-content"
-          hx-swap="innerHTML"
+          hx-swap="innerHTML show:top"
           class="flex items-center gap-3 rounded-lg px-3 py-2
                  text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
           <span class="h-2 w-2 rounded-full bg-gray-500"></span>
@@ -169,7 +170,7 @@
         id="link-10"
         hx-get="/docs/scope"
         hx-target="#main-content"
-        hx-swap="innerHTML"
+        hx-swap="innerHTML show:top"
         class="flex items-center gap-3 rounded-lg px-3 py-2
                text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
           <span class="h-2 w-2 rounded-full bg-gray-500"></span>
@@ -188,7 +189,7 @@
     hx-get="/docs/start"
     hx-trigger="load once"
     hx-target="#main-content"
-    hx-swap="innerHTML"
+      hx-swap="innerHTML show:top"
   ></div>
 
         <!-- This is the only thing that gets replaced -->
