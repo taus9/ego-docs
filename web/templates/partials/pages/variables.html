@@ -1,3 +1,170 @@
-<section>
-  <h1 class="text-3xl font-bold mb-4">Variables and Constants</h1>
+<section class="mb-10">
+  <h1 class="text-3xl md:text-4xl font-bold tracking-tight">
+    Variables and Constants
+  </h1>
+  <p class="mt-3 text-lg text-gray-300 max-w-2xl">
+    This page covers how Ego manages state using variables and
+    constants: how to declare them, assign to them, and what the
+    immutability rules are.
+  </p>
+</section>
+
+<!-- 5.1 Variable Declaration -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Variable Declaration</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Variables introduce names that can later be assigned new values.
+    In Ego you declare a new variable using the <code class="text-gray-200">:=</code>
+    operator.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">declare.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">count    := 0
+message  := "hello"
+flag     := true</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold"><code class="text-gray-200">:=</code> operator.</span>
+      Using <code class="text-gray-200">:=</code> both declares a new
+      variable and assigns its initial value in one step.
+    </div>
+
+    <div>
+      <span class="font-semibold">Scope rules.</span>
+      A variable is visible from the point where it is declared until the
+      end of the current block. Inner blocks can see variables declared
+      in outer blocks.
+    </div>
+
+    <div>
+      <span class="font-semibold">Shadowing.</span>
+      Declaring a new variable with the same name in an inner block
+      creates a new binding that temporarily shadows the outer one.
+      When the block ends, the outer variable is visible again.
+    </div>
+  </div>
+</section>
+
+<!-- 5.2 Assignment -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Assignment</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    After a variable is declared, you update its value with the
+    <code class="text-gray-200">=</code> operator.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">assign.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">count := 1
+count = count + 1
+
+name := "Ego"
+name = name + " Lang"</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold"><code class="text-gray-200">=</code> operator.</span>
+      The plain <code class="text-gray-200">=</code> operator only assigns
+      to an existing variable; it does not declare new ones.
+    </div>
+
+    <div>
+      <span class="font-semibold">Valid left-hand sides.</span>
+      The left-hand side of <code class="text-gray-200">=</code> must be a
+      writable location, typically a variable name. Assigning to literals
+      or temporary expressions is not allowed.
+    </div>
+
+    <div>
+      <span class="font-semibold">Runtime errors on undeclared identifiers.</span>
+      If you use <code class="text-gray-200">=</code> on a name that has
+      not been declared with <code class="text-gray-200">:=</code>, Ego
+      reports a runtime error instead of silently creating a new
+      variable.
+    </div>
+  </div>
+</section>
+
+<!-- 5.3 Constants -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Constants</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Constants are bindings that cannot be reassigned after they are
+    created. They are useful for configuration values and named
+    literals.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">const.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">$PI    := 3.14
+$greet := "hello"
+
+# later...
+$PI = 3.14159   # error: cannot assign to constant</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Constant declaration syntax.</span>
+      Use the <code class="text-gray-200">$</code> symbol followed by
+      a name, <code class="text-gray-200">:=</code>, and an expression to
+      declare a constant. It does not have to be uppercase.
+    </div>
+
+    <div>
+      <span class="font-semibold">Immutability rules.</span>
+      Once a constant is defined, you cannot assign a new value to it.
+      Attempting to do so results in a runtime error.
+    </div>
+
+    <div>
+      <span class="font-semibold">What values can be constant.</span>
+      Any value that can appear on the right-hand side of
+      <code class="text-gray-200">=</code> can be used in a constant
+      declaration, including numbers, strings, booleans, and more complex
+      structures.
+    </div>
+
+    <div>
+      <span class="font-semibold">Runtime behavior on reassignment.</span>
+      Reassigning a constant is an error at runtime; Ego stops execution
+      and reports what went wrong.
+    </div>
+  </div>
+</section>
+
+<!-- Navigation: Previous / Next -->
+<section class="mt-12 pt-8 border-t border-gray-800 flex flex-col items-center text-center text-base gap-3">
+  <div class="flex flex-col sm:flex-row gap-3">
+    <button
+      type="button"
+      onclick="document.getElementById('link-2')?.click()"
+      class="inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 bg-gray-900 text-gray-200 border border-gray-700 hover:bg-gray-800 cursor-pointer w-full sm:w-auto"
+    >
+      <span aria-hidden="true">&larr;</span>
+      <span class="font-medium">Values and Types</span>
+    </button>
+
+    <button
+      type="button"
+      onclick="document.getElementById('link-4')?.click()"
+      class="inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 bg-gray-800 text-gray-100 hover:bg-gray-700 cursor-pointer w-full sm:w-auto"
+    >
+      <span class="font-medium">Expressions and Operators</span>
+      <span aria-hidden="true">&rarr;</span>
+    </button>
+  </div>
 </section>
