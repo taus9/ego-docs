@@ -23,29 +23,31 @@
     </div>
     <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 10
 
-if x &gt; 0 {
-  put("positive")
-} else {
-  put("non-positive")
-}</code></pre>
+if x &gt; 0
+  put('positive')
+else
+  put('non-positive')
+;</code></pre>
   </div>
 
+  <p class="mt-2 text-lg text-gray-300"><code class="text-gray-200">if</code> can also be used as an expression that produces a value.</p>
   <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
     <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
-      <div class="text-sm text-gray-300 font-medium">nested_if.ego</div>
+      <div class="text-sm text-gray-300 font-medium">if_expr.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">score := 87
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 10
 
-if score &gt;= 90 {
-  put("A")
-} else {
-  if score &gt;= 80 {
-    put("B")
-  } else {
-    put("C or below")
-  }
-}</code></pre>
+sign := if x &gt; 0
+  "positive"
+else
+  "non-positive"
+;
+
+put(sign)
+
+# you can use single line if expressions
+isEqual := if a == b { true } else { false }</code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -66,11 +68,18 @@ if score &gt;= 90 {
     </div>
 
     <div>
-      <span class="font-semibold">Expression vs statement.</span>
-      In Ego, <code class="text-gray-200">if</code> is a statement, not an
-      expression: it does not itself produce a value. You cannot write
-      <code class="text-gray-200">x := if condition { 1 } else { 2 }</code>.
+      <span class="font-semibold">If expressions and nil.</span>
+      When you use <code class="text-gray-200">if</code> as an expression,
+      it evaluates to the value of the branch that runs. If there is no
+      <code class="text-gray-200">else</code> branch and the condition is
+      false, the whole expression evaluates to
+      <code class="text-gray-200">nil</code>. For example,
+      <code class="text-gray-200">value := if cond 'ok'</code> will set
+      <code class="text-gray-200">value</code> to <code class="text-gray-200">'ok'</code>
+      when <code class="text-gray-200">cond</code> is true and to
+      <code class="text-gray-200">nil</code> when it is false.
     </div>
+
   </div>
 </section>
 
@@ -85,24 +94,51 @@ if score &gt;= 90 {
 
   <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
     <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
-      <div class="text-sm text-gray-300 font-medium">for_basic.ego</div>
+      <div class="text-sm text-gray-300 font-medium">for_while.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
     <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">i := 0
-for i &lt; 3 {
-  put("loop", i)
+for i &lt; 3 
+  put('loop: ' + str(i))
   i = i + 1
-}</code></pre>
+;</code></pre>
   </div>
 
   <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
     <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
-      <div class="text-sm text-gray-300 font-medium">for_range.ego</div>
+      <div class="text-sm text-gray-300 font-medium">for_to.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">for i to 3 {
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"># for to loops are inclusive
+
+for i := 0 to 3
   put(i)
-}</code></pre>
+;
+
+for i := 3 to 0
+  put(i)
+;</code></pre>
+  </div>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">for_in.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">arr := [1, 2, 3]
+for index, value in arr
+  put(str(index) + ' ' + str(value))
+;
+
+mp := {"a": 1, "b": 2}
+for key, value in mp
+  put(str(key) + ' ' + str(value))
+;
+
+text := "ego"
+for index, char in text
+  put(str(index) + ' ' + str(char))
+;</code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -114,20 +150,35 @@ for i &lt; 3 {
 
     <div>
       <span class="font-semibold">Range loops with to.</span>
-      The syntax <code class="text-gray-200">for i to n</code> counts i
-      from its current value up to (and including) <code class="text-gray-200">n</code>.
+      The syntax <code class="text-gray-200">for i := a to b</code>
+      counts <code class="text-gray-200">i</code> from
+      <code class="text-gray-200">a</code> to
+      <code class="text-gray-200">b</code>, inclusive.
     </div>
 
     <div>
       <span class="font-semibold">Automatic direction.</span>
       A range loop automatically chooses to count up or down based on the
-      start and end values.
+      start and end values, so both
+      <code class="text-gray-200">for i := 0 to 3</code> and
+      <code class="text-gray-200">for i := 3 to 0</code> work.
     </div>
 
     <div>
       <span class="font-semibold">Loop variables.</span>
       The loop variable is just a normal variable; you can read and
       modify it inside the loop body.
+    </div>
+
+    <div>
+      <span class="font-semibold">for in over collections.</span>
+      Use <code class="text-gray-200">for i, v in arr</code> for arrays,
+      <code class="text-gray-200">for k, v in mp</code> for maps, and
+      <code class="text-gray-200">for i, c in text</code> for strings to
+      iterate over elements with their index or key. You can use
+      <code class="text-gray-200">_</code> to discard one or both
+      variables, for example <code class="text-gray-200">for _, v in arr</code>
+      or <code class="text-gray-200">for i, _ in text</code>.
     </div>
   </div>
 </section>
@@ -142,41 +193,53 @@ for i &lt; 3 {
 
   <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
     <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
-      <div class="text-sm text-gray-300 font-medium">again.ego</div>
+      <div class="text-sm text-gray-300 font-medium">again_break.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
     <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">i := 0
 
-for i &lt; 5 {
+for i &lt; 5
   i = i + 1
 
-  if i == 3 {
+  if i == 3
     again  # restart the loop at the top
-  }
+  ;
+
+  if i == 4
+    break  # exit the loop entirely
+  ;
 
   put(i)
-}</code></pre>
+;</code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
     <div>
       <span class="font-semibold">again.</span>
       The <code class="text-gray-200">again</code> statement skips the
-      rest of the loop body and continues with the next iteration.
+      rest of the loop body and continues with the next iteration. It is equivalent to
+      the <code class="text-gray-200">continue</code> statement in other languages.
+    </div>
+
+    <div>
+      <span class="font-semibold">break.</span>
+      The <code class="text-gray-200">break</code> statement immediately
+      exits the nearest enclosing loop, skipping any remaining
+      iterations.
     </div>
 
     <div>
       <span class="font-semibold">Outside loops.</span>
-      Using <code class="text-gray-200">again</code> outside of a loop is
-      not allowed.
+      Using <code class="text-gray-200">again</code> or
+      <code class="text-gray-200">break</code> outside of a loop is not
+      allowed.
     </div>
 
     <div>
-      <span class="font-semibold">Runtime vs parse errors.</span>
+      <span class="font-semibold">Parse errors.</span>
       Incorrect use of loop control (such as
       <code class="text-gray-200">again</code> outside a loop) is reported
-      as a runtime or compile-time error, depending on how the language
-      is implemented, but it never fails silently.
+      as a compile-time error.
     </div>
   </div>
 </section>
