@@ -3,10 +3,253 @@
     Functions
   </h1>
   <p class="mt-3 text-lg text-gray-300 max-w-2xl">
-    This page will describe how to define reusable chunks of logic in
-    Ego, how to call them with arguments, and how values are returned
-    using the language's function features.
+    This page explains how to declare functions in Ego, how arguments
+    are passed and evaluated when you call them, and how return values
+    flow back into the rest of your program.
   </p>
+</section>
+
+<!-- 8.1 Function Definition -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Function Definition</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Functions package a sequence of statements behind a single name.
+    They let you give a descriptive label to a piece of logic so it can
+    be reused without copying and pasting code.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">define_func.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:greet name
+  msg := 'hello, ' + name
+  ret msg
+;
+
+:add a, b
+  ret a + b
+;
+
+# implicit return value
+:isEqual x, y
+  x == y
+;</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Syntax.</span>
+      A function starts with the <code class="text-gray-200">:</code>
+      keyword, followed by a name, a comma-separated
+      parameter list, and then a block of statements. Parentheses are not allowed
+      around the parameter list. 
+    </div>
+
+    <div>
+      <span class="font-semibold">Parameters.</span>
+      Parameter names behave like local variables that are initialized
+      from the arguments at call time. Inside the function body, you
+      read and assign them just like any other variable.
+    </div>
+
+    <div>
+      <span class="font-semibold">Block structure.</span>
+      Function bodies follow the same rules as other multi-line
+      constructs in Ego: the body is indented under the definition line
+      and the block is closed by a final line ending with
+      <code class="text-gray-200">;</code>.
+    </div>
+
+    <div>
+      <span class="font-semibold">Return values.</span>
+      The <code class="text-gray-200">ret</code> statement immediately
+      stops executing the function and produces its value. If control
+      reaches the end of the function body without a
+      <code class="text-gray-200">ret</code>, the value of the last
+      expression in the body is returned implicitly. If there is no
+      such expression, the function returns
+      <code class="text-gray-200">nil</code> by default.
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- 8.2 Function Literals -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Function Literals</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    In addition to named functions, Ego supports function literals. These let you create a function
+    value inline and store it in a variable or pass it around.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">anon_func.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">add1 :&gt; x, y
+  # function body
+  ret x + y
+;
+
+add2 := add1
+put(add2(3, 4))  # prints 7
+
+:closure x
+  # inner function literal that closes over x
+  inner :&gt; y
+    ret x + y
+  ;
+
+  ret inner
+;
+
+adder := closure(10)
+put(adder(5))  # prints 15</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Function literal syntax.</span>
+      The operator <code class="text-gray-200">:&gt;</code> introduces
+      a function literal. The parameters and body look like a normal
+      function, but the function itself has no name and is instead a
+      value you can assign or pass around.
+    </div>
+
+    <div>
+      <span class="font-semibold">Assigning to variables.</span>
+      In the first example, the variable
+      <code class="text-gray-200">add1</code> is bound to a
+      function literal, and <code class="text-gray-200">add2</code>
+      is another variable that refers to the same function. You can
+      call it just like any named function:
+      <code class="text-gray-200">add2(3, 4)</code>.
+    </div>
+
+    <div>
+      <span class="font-semibold">Closures.</span>
+      Function literals can capture variables from the surrounding
+      scope. In the <code class="text-gray-200">closure</code> example,
+      the inner function uses <code class="text-gray-200">x</code>
+      from the outer scope, so the returned function "remembers" the
+      value of <code class="text-gray-200">x</code> each time it is
+      called.
+    </div>
+  </div>
+</section>
+
+<!-- 8.3 Function Calls -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Function Calls</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Calling a function evaluates its body with a particular set of
+    argument values. The result of the last
+    <code class="text-gray-200">ret</code> is the value of the call
+    expression.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">call_fn.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:square x
+  ret x * x
+;
+
+hypotenuse a, b
+  # nested calls
+  ret square(a) + square(b)
+;
+
+result := hypotenuse(3, 4)
+put('result = ' + str(result))</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Argument passing.</span>
+      When you call a function, Ego first evaluates each argument
+      expression and then assigns those values to the corresponding
+      parameters inside the callee.
+    </div>
+
+    <div>
+      <span class="font-semibold">Evaluation order.</span>
+      Arguments are evaluated before the function body runs, so any
+      side effects they have (such as <code class="text-gray-200">put</code>
+      calls or assignments) happen before entering the function.
+    </div>
+
+    <div>
+      <span class="font-semibold">Side effects.</span>
+      Functions may return values, perform side effects like printing,
+      or both. A call expression can be used as a standalone statement
+      (for its effects) or as part of a larger expression.
+    </div>
+  </div>
+</section>
+
+<!-- 8.4 Arguments -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Arguments</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Ego uses simple positional arguments for function calls, plus a
+    small set of special variables for script-level parameters.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">args.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:repeat msg, times
+  i := 0
+  for i &lt; times
+    put(msg)
+    i = i + 1
+  ;
+;
+
+repeat('hi', 3)
+
+:show_script_args
+  put('script name: ' + $0)
+  put('first arg: ' + $1)
+  put('second arg: ' + $2)
+;</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Positional arguments.</span>
+      Arguments are matched to parameters by position only. The first
+      argument initializes the first parameter, the second argument the
+      second parameter, and so on.
+    </div>
+
+    <div>
+      <span class="font-semibold">Special args.</span>
+      The identifiers <code class="text-gray-200">$0</code>,
+      <code class="text-gray-200">$1</code>,
+      <code class="text-gray-200">$2</code>, and so on are reserved for
+      script-level positional parameters. Typically
+      <code class="text-gray-200">$0</code> holds the script name and
+      <code class="text-gray-200">$1</code> and above hold values
+      passed on the command line. Script arguments are read-only and
+      cannot be assigned to. They will always be strings.
+    </div>
+
+    <div>
+      <span class="font-semibold">Argument count behavior.</span>
+      A call must supply exactly as many arguments as there are
+      parameters. Supplying too few or too many arguments is reported as
+      an error rather than silently guessing what you meant.
+    </div>
+  </div>
 </section>
 
 <!-- Navigation: Previous / Next -->
