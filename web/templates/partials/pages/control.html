@@ -1,3 +1,205 @@
-<section>
-  <h1 class="text-3xl font-bold mb-4">Control Flow</h1>
+<section class="mb-10">
+  <h1 class="text-3xl md:text-4xl font-bold tracking-tight">
+    Control Flow
+  </h1>
+  <p class="mt-3 text-lg text-gray-300 max-w-2xl">
+    This page describes how Ego chooses which code to run using
+    conditionals, loops, and loop control constructs.
+  </p>
+</section>
+
+<!-- 7.1 Conditionals -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Conditionals</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Conditionals let you run different code depending on whether a
+    condition is true or false.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">if_else.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 10
+
+if x &gt; 0 {
+  put("positive")
+} else {
+  put("non-positive")
+}</code></pre>
+  </div>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">nested_if.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">score := 87
+
+if score &gt;= 90 {
+  put("A")
+} else {
+  if score &gt;= 80 {
+    put("B")
+  } else {
+    put("C or below")
+  }
+}</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">if and else.</span>
+      An <code class="text-gray-200">if</code> block checks a condition
+      and runs its body when the condition is truthy. An optional
+      <code class="text-gray-200">else</code> block runs when the
+      condition is false.
+    </div>
+
+    <div>
+      <span class="font-semibold">Nested conditionals.</span>
+      You can place an <code class="text-gray-200">if</code> inside
+      another <code class="text-gray-200">if</code> or
+      <code class="text-gray-200">else</code> block to express more
+      complex decisions.
+    </div>
+
+    <div>
+      <span class="font-semibold">Expression vs statement.</span>
+      In Ego, <code class="text-gray-200">if</code> is a statement, not an
+      expression: it does not itself produce a value. You cannot write
+      <code class="text-gray-200">x := if condition { 1 } else { 2 }</code>.
+    </div>
+  </div>
+</section>
+
+<!-- 7.2 Loops -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Loops</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Loops let you repeat a block of code multiple times. Ego uses a
+    single <code class="text-gray-200">for</code> construct for both
+    general loops and simple ranges.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">for_basic.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">i := 0
+for i &lt; 3 {
+  put("loop", i)
+  i = i + 1
+}</code></pre>
+  </div>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">for_range.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">for i to 3 {
+  put(i)
+}</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">for.</span>
+      A <code class="text-gray-200">for</code> loop repeats while its
+      condition is truthy. You update loop variables inside the body.
+    </div>
+
+    <div>
+      <span class="font-semibold">Range loops with to.</span>
+      The syntax <code class="text-gray-200">for i to n</code> counts i
+      from its current value up to (and including) <code class="text-gray-200">n</code>.
+    </div>
+
+    <div>
+      <span class="font-semibold">Automatic direction.</span>
+      A range loop automatically chooses to count up or down based on the
+      start and end values.
+    </div>
+
+    <div>
+      <span class="font-semibold">Loop variables.</span>
+      The loop variable is just a normal variable; you can read and
+      modify it inside the loop body.
+    </div>
+  </div>
+</section>
+
+<!-- 7.3 Loop Control -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Loop Control</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Loop control constructs change how and when a loop continues
+    executing.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">again.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">i := 0
+
+for i &lt; 5 {
+  i = i + 1
+
+  if i == 3 {
+    again  # restart the loop at the top
+  }
+
+  put(i)
+}</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">again.</span>
+      The <code class="text-gray-200">again</code> statement skips the
+      rest of the loop body and continues with the next iteration.
+    </div>
+
+    <div>
+      <span class="font-semibold">Outside loops.</span>
+      Using <code class="text-gray-200">again</code> outside of a loop is
+      not allowed.
+    </div>
+
+    <div>
+      <span class="font-semibold">Runtime vs parse errors.</span>
+      Incorrect use of loop control (such as
+      <code class="text-gray-200">again</code> outside a loop) is reported
+      as a runtime or compile-time error, depending on how the language
+      is implemented, but it never fails silently.
+    </div>
+  </div>
+</section>
+
+<!-- Navigation: Previous / Next -->
+<section class="mt-12 pt-8 border-t border-gray-800 flex flex-col items-center text-center text-base gap-3">
+  <div class="flex flex-col sm:flex-row gap-3">
+    <button
+      type="button"
+      onclick="document.getElementById('link-4')?.click()"
+      class="inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 bg-gray-900 text-gray-200 border border-gray-700 hover:bg-gray-800 cursor-pointer w-full sm:w-auto"
+    >
+      <span aria-hidden="true">&larr;</span>
+      <span class="font-medium">Expressions and Operators</span>
+    </button>
+
+    <button
+      type="button"
+      onclick="document.getElementById('link-6')?.click()"
+      class="inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 bg-gray-800 text-gray-100 hover:bg-gray-700 cursor-pointer w-full sm:w-auto"
+    >
+      <span class="font-medium">Functions</span>
+      <span aria-hidden="true">&rarr;</span>
+    </button>
+  </div>
 </section>
