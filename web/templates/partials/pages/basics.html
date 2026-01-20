@@ -1,3 +1,149 @@
-<section>
-  <h1 class="text-3xl font-bold mb-4">Language Basics</h1>
+<section class="mb-10">
+  <h1 class="text-3xl md:text-4xl font-bold tracking-tight">
+    Language Basics
+  </h1>
+  <p class="mt-3 text-gray-300 max-w-2xl">
+    This page introduces the core mental model for writing Ego programs:
+    how files are structured, how statements and comments work, and how
+    you name things with identifiers.
+  </p>
+</section>
+
+<!-- Program Structure -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Program Structure</h2>
+  <p class="mt-2 text-gray-300">
+    An Ego program is just a sequence of statements executed from top to
+    bottom. There is no special project format or module system required
+    to get started.
+  </p>
+
+  <div class="mt-4 space-y-3 text-sm text-gray-300">
+    <div>
+      <span class="font-semibold">Statements -</span>
+      Each line normally contains a single statement: an assignment,
+      expression, or control-flow construct (like an <code class="text-gray-200">if</code> or a <code class="text-gray-200">for</code> loop).
+    </div>
+
+    <div>
+      <span class="font-semibold">Newlines - </span>
+      A newline ends a statement or expression. The <code class="text-gray-200">;</code> is only used to close blocks. They do not go at the end of every line.    </div>
+
+    <div>
+      <span class="font-semibold">Block termination with ; -</span>
+      Multi-line constructs (such as conditionals, loops or function declarations) are closed by
+      a final statement that ends with <code class="text-gray-200">;</code>
+      to mark the end of the block.
+    </div>
+
+    <div>
+      <span class="font-semibold">Top-level execution -</span>
+      Currently, code at the top level of a file runs immediately when the file is
+      executed. There is no required entrypoint function for
+      scripts. However, in the future Ego may require a main function entrypoint
+    </div>
+  </div>
+</section>
+
+<!--Comments -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Comments</h2>
+  <p class="mt-2 text-gray-300">
+    Comments are ignored by the interpreter and are only for humans.
+    Use them to explain intent, assumptions, or non-obvious behavior.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">comments.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-sm overflow-x-auto"><code class="text-gray-200"># this is a line comment
+x := 10  # comments can follow code on the same line
+
+# the interpreter ignores everything after '#'
+put(x)</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-sm text-gray-300">
+    <div>
+      <span class="font-semibold">Line comments.</span>
+      Ego uses <code class="text-gray-200">#</code> for line comments.
+      Everything from <code class="text-gray-200">#</code> to the end of
+      the line is ignored.
+    </div>
+
+    <div>
+      <span class="font-semibold">Comment rules.</span>
+      You can place comments on their own line or after code on the same
+      line. Comments cannot appear in the middle of a token (for example,
+      inside a number or identifier).
+    </div>
+
+    <div>
+      <span class="font-semibold">Nesting.</span>
+      Only line comments are supported, so comments do not nest. Another
+      <code class="text-gray-200">#</code> inside a comment has no special
+      meaning.
+    </div>
+  </div>
+</section>
+
+<!--Identifiers -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Identifiers</h2>
+  <p class="mt-2 text-gray-300">
+    Identifiers are the names you give to variables, functions, and
+    other user-defined symbols.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">identifiers.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-sm overflow-x-auto"><code class="text-gray-200">name     := "Ego"
+answer42 := 42
+_is_temp := true
+$PI      := 3.14
+
+put(name + ' is ' + str(answer42))</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-sm text-gray-300">
+    <div>
+      <span class="font-semibold">Valid characters.</span>
+      Identifiers start with a letter <code class="text-gray-200">a-z</code>
+      or <code class="text-gray-200">A-Z</code>, the <code class="text-gray-200">$</code> symbol, or an underscore
+      <code class="text-gray-200">_</code>, and may contain letters,
+      digits, and underscores after that.
+    </div>
+
+    <div>
+      <span class="font-semibold">Case sensitivity.</span>
+      Identifiers are case-sensitive, so
+      <code class="text-gray-200">value</code> and
+      <code class="text-gray-200">Value</code> are different names.
+    </div>
+
+    <div>
+      <span class="font-semibold">Reserved words.</span>
+      Certain short words are reserved for language syntax (for example,
+      <code class="text-gray-200">if</code>,
+      <code class="text-gray-200">else</code>,
+      <code class="text-gray-200">for</code>,
+      <code class="text-gray-200">nil</code>,
+      <code class="text-gray-200">ret</code>). These cannot be used as
+      identifiers.
+    </div>
+
+    <div>
+      <span class="font-semibold">Special identifiers.</span>
+      The language reserves names like
+      <code class="text-gray-200">$0</code>,
+      <code class="text-gray-200">$1</code>, <code class="text-gray-200">$2</code>, and so on for special
+      purposes (such as positional parameters passed to a script). Avoid
+      using these for your own variables.
+    </div>
+  </div>
 </section>
