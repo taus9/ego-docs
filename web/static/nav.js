@@ -42,4 +42,7 @@ sidebar.addEventListener("click", (event) => {
   if (currentSpan) currentSpan.setAttribute("class", focusedSpanClassName);
   
   lastTarget = topicLink;
+
+  // Smoothly scroll the whole page to the top on navigation
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
