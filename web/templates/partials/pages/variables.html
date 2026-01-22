@@ -18,9 +18,9 @@
       <div class="text-sm text-gray-300 font-medium">declare.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">count    := 0
-message  := "hello"
-flag     := true</code></pre>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">count</span>    <span class="operator">:=</span> <span class="number">0</span>
+<span class="variable">message</span>  <span class="operator">:=</span> <span class="string">'hello'</span>
+<span class="variable">flag</span>     <span class="operator">:=</span> <span class="keyword">true</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -59,11 +59,11 @@ flag     := true</code></pre>
       <div class="text-sm text-gray-300 font-medium">assign.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">count := 1
-count = count + 1
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">count</span> <span class="operator">:=</span> <span class="number">1</span>
+<span class="variable">count</span> <span class="operator">=</span> <span class="variable">count</span> <span class="operator">+</span> <span class="number">1</span>
 
-name := "Ego"
-name = name + " Lang"</code></pre>
+<span class="variable">name</span> <span class="operator">:=</span> <span class="string">'Ego'</span>
+<span class="variable">name</span> <span class="operator">=</span> <span class="variable">name</span> <span class="operator">+</span> <span class="string">' Lang'</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -104,11 +104,11 @@ name = name + " Lang"</code></pre>
       <div class="text-sm text-gray-300 font-medium">const.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">$PI    := 3.14
-$greet := "hello"
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">$PI</span>    <span class="operator">:=</span> <span class="number">3.14</span>
+<span class="variable">$greet</span> <span class="operator">:=</span> <span class="string">'hello'</span>
 
-# later...
-$PI = 3.14159   # error: cannot assign to constant</code></pre>
+<span class="comment"># later...</span>
+<span class="variable">$PI</span> <span class="operator">=</span> <span class="number">3.14159</span>   <span class="comment"># error: cannot assign to constant</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
