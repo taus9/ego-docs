@@ -75,12 +75,12 @@
       <div class="text-sm text-gray-300 font-medium">dynamic.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 41      # integer
-x = 3.14     # now a float
-x = "hello"  # now a string
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">x</span> <span class="operator">:=</span> <span class="number">41</span>      <span class="comment"># integer</span>
+<span class="variable">x</span> <span class="operator">=</span> <span class="number">3.14</span>     <span class="comment"># now a float</span>
+<span class="variable">x</span> <span class="operator">=</span> <span class="string">'hello'</span>  <span class="comment"># now a string</span>
 
-# still strong typing: this is an error
-x = "hi" + 1  # cannot add string and integer</code></pre>
+<span class="comment"># still strong typing: this is an error</span>
+<span class="variable">x</span> <span class="operator">=</span> <span class="string">'hi'</span> <span class="operator">+</span> <span class="number">1</span>  <span class="comment"># cannot add string and integer</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -124,17 +124,17 @@ x = "hi" + 1  # cannot add string and integer</code></pre>
       <div class="text-sm text-gray-300 font-medium">truthiness.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">if 0 
-  put('0 is truthy')
-;
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="keyword">if</span> <span class="number">0</span>
+  <span class="function">put</span>(<span class="string">'0 is truthy'</span>)
+<span class="operator">;</span>
 
-if ''
-  put('empty string is truthy')
-;
+<span class="keyword">if</span> <span class="string">''</span>
+  <span class="function">put</span>(<span class="string">'empty string is truthy'</span>)
+<span class="operator">;</span>
 
-if nil 
-  put('this never runs')
-;</code></pre>
+<span class="keyword">if</span> <span class="keyword">nil</span>
+  <span class="function">put</span>(<span class="string">'this never runs'</span>)
+<span class="operator">;</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
