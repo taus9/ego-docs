@@ -45,4 +45,9 @@ sidebar.addEventListener("click", (event) => {
 
   // Smoothly scroll the whole page to the top on navigation
   window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // On mobile, close the sidebar after navigating
+  if (window.innerWidth < 768) {
+    closeSidebar();
+  }
 });
