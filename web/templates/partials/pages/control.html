@@ -17,13 +17,13 @@
       <div class="text-sm text-gray-300 font-medium">if_else.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 10
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">x</span> <span class="operator">:=</span> <span class="number">10</span>
 
-if x &gt; 0
-  put('positive')
-else
-  put('non-positive')
-;</code></pre>
+<span class="keyword">if</span> <span class="variable">x</span> <span class="operator">&gt;</span> <span class="number">0</span>
+  <span class="function">put</span>(<span class="string">'positive'</span>)
+<span class="keyword">else</span>
+  <span class="function">put</span>(<span class="string">'non-positive'</span>)
+<span class="operator">;</span></code></pre>
   </div>
 
   <p class="mt-2 text-lg text-gray-300"><code class="text-gray-200">if</code> can also be used as an expression that produces a value.</p>
@@ -32,18 +32,18 @@ else
       <div class="text-sm text-gray-300 font-medium">if_expr.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 10
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">x</span> <span class="operator">:=</span> <span class="number">10</span>
 
-sign := if x &gt; 0
-  "positive"
-else
-  "non-positive"
-;
+<span class="variable">sign</span> <span class="operator">:=</span> <span class="keyword">if</span> <span class="variable">x</span> <span class="operator">&gt;</span> <span class="number">0</span>
+  <span class="string">'positive'</span>
+<span class="keyword">else</span>
+  <span class="string">'non-positive'</span>
+<span class="operator">;</span>
 
-put(sign)
+<span class="function">put</span>(<span class="variable">sign</span>)
 
-# you can use single line if expressions
-isEqual := if a == b { true } else { false }</code></pre>
+<span class="comment"># you can use single line if expressions</span>
+<span class="variable">isEqual</span> <span class="operator">:=</span> <span class="keyword">if</span> <span class="variable">a</span> <span class="operator">==</span> <span class="variable">b</span> <span class="operator">{</span> <span class="keyword">true</span> <span class="operator">}</span> <span class="keyword">else</span> <span class="operator">{</span> <span class="keyword">false</span> <span class="operator">}</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -93,11 +93,11 @@ isEqual := if a == b { true } else { false }</code></pre>
       <div class="text-sm text-gray-300 font-medium">for_while.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">i := 0
-for i &lt; 3 
-  put('loop: ' + str(i))
-  i = i + 1
-;</code></pre>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">i</span> <span class="operator">:=</span> <span class="number">0</span>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="operator">&lt;</span> <span class="number">3</span>
+  <span class="function">put</span>(<span class="string">'loop: '</span> <span class="operator">+</span> <span class="function">str</span>(<span class="variable">i</span>))
+  <span class="variable">i</span> <span class="operator">=</span> <span class="variable">i</span> <span class="operator">+</span> <span class="number">1</span>
+<span class="operator">;</span></code></pre>
   </div>
 
   <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
@@ -105,15 +105,15 @@ for i &lt; 3
       <div class="text-sm text-gray-300 font-medium">for_to.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"># for to loops are inclusive
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="comment"># for to loops are inclusive</span>
 
-for i := 0 to 3
-  put(i)
-;
+<span class="keyword">for</span> <span class="variable">i</span> <span class="operator">:=</span> <span class="number">0</span> <span class="keyword">to</span> <span class="number">3</span>
+  <span class="function">put</span>(<span class="variable">i</span>)
+<span class="operator">;</span>
 
-for i := 3 to 0
-  put(i)
-;</code></pre>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="operator">:=</span> <span class="number">3</span> <span class="keyword">to</span> <span class="number">0</span>
+  <span class="function">put</span>(<span class="variable">i</span>)
+<span class="operator">;</span></code></pre>
   </div>
 
   <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
@@ -121,20 +121,20 @@ for i := 3 to 0
       <div class="text-sm text-gray-300 font-medium">for_in.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">arr := [1, 2, 3]
-for index, value in arr
-  put(str(index) + ' ' + str(value))
-;
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">arr</span> <span class="operator">:=</span> <span class="operator">[</span><span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span><span class="operator">]</span>
+<span class="keyword">for</span> <span class="variable">index</span>, <span class="variable">value</span> <span class="keyword">in</span> <span class="variable">arr</span>
+  <span class="function">put</span>(<span class="function">str</span>(<span class="variable">index</span>) <span class="operator">+</span> <span class="string">' '</span> <span class="operator">+</span> <span class="function">str</span>(<span class="variable">value</span>))
+<span class="operator">;</span>
 
-mp := {"a": 1, "b": 2}
-for key, value in mp
-  put(str(key) + ' ' + str(value))
-;
+<span class="variable">mp</span> <span class="operator">:=</span> <span class="operator">{</span><span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span><span class="operator">}</span>
+<span class="keyword">for</span> <span class="variable">key</span>, <span class="variable">value</span> <span class="keyword">in</span> <span class="variable">mp</span>
+  <span class="function">put</span>(<span class="function">str</span>(<span class="variable">key</span>) <span class="operator">+</span> <span class="string">' '</span> <span class="operator">+</span> <span class="function">str</span>(<span class="variable">value</span>))
+<span class="operator">;</span>
 
-text := "ego"
-for index, char in text
-  put(str(index) + ' ' + str(char))
-;</code></pre>
+<span class="variable">text</span> <span class="operator">:=</span> <span class="string">'ego'</span>
+<span class="keyword">for</span> <span class="variable">index</span>, <span class="variable">char</span> <span class="keyword">in</span> <span class="variable">text</span>
+  <span class="function">put</span>(<span class="function">str</span>(<span class="variable">index</span>) <span class="operator">+</span> <span class="string">' '</span> <span class="operator">+</span> <span class="function">str</span>(<span class="variable">char</span>))
+<span class="operator">;</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -192,21 +192,21 @@ for index, char in text
       <div class="text-sm text-gray-300 font-medium">again_break.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">i := 0
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">i</span> <span class="operator">:=</span> <span class="number">0</span>
 
-for i &lt; 5
-  i = i + 1
+<span class="keyword">for</span> <span class="variable">i</span> <span class="operator">&lt;</span> <span class="number">5</span>
+  <span class="variable">i</span> <span class="operator">=</span> <span class="variable">i</span> <span class="operator">+</span> <span class="number">1</span>
 
-  if i == 3
-    again  # restart the loop at the top
-  ;
+  <span class="keyword">if</span> <span class="variable">i</span> <span class="operator">==</span> <span class="number">3</span>
+    <span class="keyword">again</span>  <span class="comment"># restart the loop at the top</span>
+  <span class="operator">;</span>
 
-  if i == 4
-    break  # exit the loop entirely
-  ;
+  <span class="keyword">if</span> <span class="variable">i</span> <span class="operator">==</span> <span class="number">4</span>
+    <span class="keyword">break</span>  <span class="comment"># exit the loop entirely</span>
+  <span class="operator">;</span>
 
-  put(i)
-;</code></pre>
+  <span class="function">put</span>(<span class="variable">i</span>)
+<span class="operator">;</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
