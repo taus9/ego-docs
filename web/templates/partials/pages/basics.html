@@ -53,11 +53,11 @@
       <div class="text-sm text-gray-300 font-medium">comments.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"># this is a line comment
-x := 10  # comments can follow code on the same line
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="comment"># this is a line comment</span>
+<span class="variable">x</span> <span class="operator">:=</span> <span class="number">10</span>  <span class="comment"># comments can follow code on the same line</span>
 
-# the interpreter ignores everything after '#'
-put(x)</code></pre>
+<span class="comment"># the interpreter ignores everything after '#'</span>
+<span class="function">put</span>(<span class="variable">x</span>)</code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -97,12 +97,12 @@ put(x)</code></pre>
       <div class="text-sm text-gray-300 font-medium">identifiers.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">name     := "Ego"
-answer42 := 42
-_is_temp := true
-$PI      := 3.14
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">name</span>     <span class="operator">:=</span> <span class="string">"Ego"</span>
+<span class="variable">answer42</span> <span class="operator">:=</span> <span class="number">42</span>
+<span class="variable">_is_temp</span> <span class="operator">:=</span> <span class="keyword">true</span>
+<span class="variable">$PI</span>      <span class="operator">:=</span> <span class="number">3.14</span>
 
-put(name + ' is ' + str(answer42))</code></pre>
+<span class="function">put</span>(<span class="variable">name</span> + <span class="string">' is '</span> + <span class="function">str</span>(<span class="variable">answer42</span>))</code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
