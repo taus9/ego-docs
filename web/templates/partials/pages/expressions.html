@@ -21,14 +21,14 @@
       <div class="text-sm text-gray-300 font-medium">arith.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">a := 10
-b := 3
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">a</span> <span class="operator">:=</span> <span class="number">10</span>
+<span class="variable">b</span> <span class="operator">:=</span> <span class="number">3</span>
 
-sum  := a + b
-sub  := a - b
-prod := a * b
-quot := a / b
-mod  := a % b</code></pre>
+<span class="variable">sum</span>  <span class="operator">:=</span> <span class="variable">a</span> <span class="operator">+</span> <span class="variable">b</span>
+<span class="variable">sub</span>  <span class="operator">:=</span> <span class="variable">a</span> <span class="operator">-</span> <span class="variable">b</span>
+<span class="variable">prod</span> <span class="operator">:=</span> <span class="variable">a</span> <span class="operator">*</span> <span class="variable">b</span>
+<span class="variable">quot</span> <span class="operator">:=</span> <span class="variable">a</span> <span class="operator">/</span> <span class="variable">b</span>
+<span class="variable">mod</span>  <span class="operator">:=</span> <span class="variable">a</span> <span class="operator">%</span> <span class="variable">b</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -55,15 +55,15 @@ mod  := a % b</code></pre>
       <div class="text-sm text-gray-300 font-medium">compare.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 10
-y := 20
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">x</span> <span class="operator">:=</span> <span class="number">10</span>
+<span class="variable">y</span> <span class="operator">:=</span> <span class="number">20</span>
 
-put(x == y)  # false
-put(x != y)  # true
-put(x < y)   # true
-put(x <= 10) # true
-put(y > x)   # true
-put(y >= 20) # true</code></pre>
+<span class="function">put</span>(<span class="variable">x</span> <span class="operator">==</span> <span class="variable">y</span>)  <span class="comment"># false</span>
+<span class="function">put</span>(<span class="variable">x</span> <span class="operator">!=</span> <span class="variable">y</span>)  <span class="comment"># true</span>
+<span class="function">put</span>(<span class="variable">x</span> <span class="operator">&lt;</span> <span class="variable">y</span>)   <span class="comment"># true</span>
+<span class="function">put</span>(<span class="variable">x</span> <span class="operator">&lt;=</span> <span class="number">10</span>) <span class="comment"># true</span>
+<span class="function">put</span>(<span class="variable">y</span> <span class="operator">&gt;</span> <span class="variable">x</span>)   <span class="comment"># true</span>
+<span class="function">put</span>(<span class="variable">y</span> <span class="operator">&gt;=</span> <span class="number">20</span>) <span class="comment"># true</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -92,18 +92,18 @@ put(y >= 20) # true</code></pre>
       <div class="text-sm text-gray-300 font-medium">logic.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">a := true
-b := false
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">a</span> <span class="operator">:=</span> <span class="keyword">true</span>
+<span class="variable">b</span> <span class="operator">:=</span> <span class="keyword">false</span>
 
-put(a and b) # false
-put(a or b)  # true
+<span class="function">put</span>(<span class="variable">a</span> <span class="keyword">and</span> <span class="variable">b</span>) <span class="comment"># false</span>
+<span class="function">put</span>(<span class="variable">a</span> <span class="keyword">or</span> <span class="variable">b</span>)  <span class="comment"># true</span>
 
-# prefix operators
-put(!a)      # false
-put(!b)      # true
+<span class="comment"># prefix operators</span>
+<span class="function">put</span>(<span class="operator">!</span><span class="variable">a</span>)      <span class="comment"># false</span>
+<span class="function">put</span>(<span class="operator">!</span><span class="variable">b</span>)      <span class="comment"># true</span>
 
-x := 5
-y := -x     # numeric negation</code></pre>
+<span class="variable">x</span> <span class="operator">:=</span> <span class="number">5</span>
+<span class="variable">y</span> <span class="operator">:=</span> <span class="operator">-</span><span class="variable">x</span>     <span class="comment"># numeric negation</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -151,10 +151,10 @@ y := -x     # numeric negation</code></pre>
       <div class="text-sm text-gray-300 font-medium">precedence.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 1 + 2 * 3      # 1 + (2 * 3)
-y := (1 + 2) * 3    # grouped explicitly
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">x</span> <span class="operator">:=</span> <span class="number">1</span> <span class="operator">+</span> <span class="number">2</span> <span class="operator">*</span> <span class="number">3</span>      <span class="comment"># 1 + (2 * 3)</span>
+<span class="variable">y</span> <span class="operator">:=</span> <span class="operator">(</span><span class="number">1</span> <span class="operator">+</span> <span class="number">2</span><span class="operator">)</span> <span class="operator">*</span> <span class="number">3</span>    <span class="comment"># grouped explicitly</span>
 
-ok := !false and 1 &lt; 2 or false</code></pre>
+<span class="variable">ok</span> <span class="operator">:=</span> <span class="operator">!</span><span class="keyword">false</span> <span class="keyword">and</span> <span class="number">1</span> <span class="operator">&lt;</span> <span class="number">2</span> <span class="keyword">or</span> <span class="keyword">false</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
