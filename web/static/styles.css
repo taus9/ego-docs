@@ -2,11 +2,11 @@
 	/* Code syntax colors for Ego examples */
 	--ego-code-keyword: #569cd6;  /* keywords (VS Code blue) */
 	--ego-code-string: #ce9178;   /* strings */
-	--ego-code-number: #b5cea8;   /* numbers */
-	--ego-code-variable: #d4d4d4; /* variables / identifiers (default fg) */
+	--ego-code-number: #a9cf95;   /* numbers */
+	--ego-code-variable: #abdafa; /* variables / identifiers (default fg) */
 	--ego-code-function: #c8c063; /* function names (slightly darker) */
 	--ego-code-comment: #6a9955;  /* comments */
-	--ego-code-operator: #d4d4d4; /* operators */
+	--ego-code-operator: #faf7f7; /* operators */
 	--ego-code-default: #d4d4d4;  /* everything else */
 }
 
