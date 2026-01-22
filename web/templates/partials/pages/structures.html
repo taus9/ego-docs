@@ -176,6 +176,58 @@ put(n)</code></pre>
   </div>
 </section>
 
+<!-- Shared References -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Shared References</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Arrays and maps are always passed by reference in Ego. This means
+    that when you pass them into a function or assign them to another
+    variable, all names point at the same underlying collection. Any
+    in-place change through one reference is visible through the others.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">by_reference.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:bump_first arr
+  # modifies the same array the caller sees
+  arr[0] = arr[0] + 1
+;
+
+nums := [1, 2, 3]
+other := nums        # points at the same array
+
+bump_first(nums)
+put(nums[0])         # 2
+put(other[0])        # 2 (also changed)
+
+:set_flag m
+  m['done'] = true   # updates the original map
+;
+
+state := {}
+set_flag(state)
+put(state['done'])   # true</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">No copies on pass.</span>
+      Passing an array or map into a function does not create a copy;
+      the callee sees and can mutate the caller's collection.
+    </div>
+
+    <div>
+      <span class="font-semibold">Assignment shares storage.</span>
+      Simple assignments like <code class="text-gray-200">b = a</code>
+      for arrays or maps share the same underlying data until you
+      explicitly build a new collection.
+    </div>
+  </div>
+</section>
+
 <!-- Navigation: Previous / Next -->
 <section class="mt-12 pt-8 border-t border-gray-800 flex flex-col items-center text-center text-base gap-3">
   <div class="flex flex-col sm:flex-row gap-3">
