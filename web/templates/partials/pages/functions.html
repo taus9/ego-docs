@@ -18,19 +18,19 @@
       <div class="text-sm text-gray-300 font-medium">define_func.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:greet name
-  msg := 'hello, ' + name
-  ret msg
-;
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="operator">:</span><span class="function">greet</span> <span class="variable">name</span>
+  <span class="variable">msg</span> <span class="operator">:=</span> <span class="string">'hello, '</span> <span class="operator">+</span> <span class="variable">name</span>
+  <span class="keyword">ret</span> <span class="variable">msg</span>
+<span class="operator">;</span>
 
-:add a, b
-  ret a + b
-;
+<span class="operator">:</span><span class="function">add</span> <span class="variable">a</span>, <span class="variable">b</span>
+  <span class="keyword">ret</span> <span class="variable">a</span> <span class="operator">+</span> <span class="variable">b</span>
+<span class="operator">;</span>
 
-# implicit return value
-:isEqual x, y
-  x == y
-;</code></pre>
+<span class="comment"># implicit return value</span>
+<span class="operator">:</span><span class="function">isEqual</span> <span class="variable">x</span>, <span class="variable">y</span>
+  <span class="variable">x</span> <span class="operator">==</span> <span class="variable">y</span>
+<span class="operator">;</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -84,25 +84,25 @@
       <div class="text-sm text-gray-300 font-medium">anon_func.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">add1 :&gt; x, y
-  # function body
-  ret x + y
-;
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">add1</span> <span class="operator">:&gt;</span> <span class="variable">x</span>, <span class="variable">y</span>
+  <span class="comment"># function body</span>
+  <span class="keyword">ret</span> <span class="variable">x</span> <span class="operator">+</span> <span class="variable">y</span>
+<span class="operator">;</span>
 
-add2 := add1
-put(add2(3, 4))  # prints 7
+<span class="variable">add2</span> <span class="operator">:=</span> <span class="variable">add1</span>
+<span class="function">put</span>(<span class="variable">add2</span>(<span class="number">3</span>, <span class="number">4</span>))  <span class="comment"># prints 7</span>
 
-:closure x
-  # inner function literal that closes over x
-  inner :&gt; y
-    ret x + y
-  ;
+<span class="operator">:</span><span class="function">closure</span> <span class="variable">x</span>
+  <span class="comment"># inner function literal that closes over x</span>
+  <span class="variable">inner</span> <span class="operator">:&gt;</span> <span class="variable">y</span>
+    <span class="keyword">ret</span> <span class="variable">x</span> <span class="operator">+</span> <span class="variable">y</span>
+  <span class="operator">;</span>
 
-  ret inner
-;
+  <span class="keyword">ret</span> <span class="variable">inner</span>
+<span class="operator">;</span>
 
-adder := closure(10)
-put(adder(5))  # prints 15</code></pre>
+<span class="variable">adder</span> <span class="operator">:=</span> <span class="function">closure</span>(<span class="number">10</span>)
+<span class="function">put</span>(<span class="variable">adder</span>(<span class="number">5</span>))  <span class="comment"># prints 15</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -151,17 +151,17 @@ put(adder(5))  # prints 15</code></pre>
       <div class="text-sm text-gray-300 font-medium">call_fn.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:square x
-  ret x * x
-;
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="operator">:</span><span class="function">square</span> <span class="variable">x</span>
+  <span class="keyword">ret</span> <span class="variable">x</span> <span class="operator">*</span> <span class="variable">x</span>
+<span class="operator">;</span>
 
-hypotenuse a, b
-  # nested calls
-  ret square(a) + square(b)
-;
+<span class="operator">:</span><span class="function">hypotenuse</span> <span class="variable">a</span>, <span class="variable">b</span>
+  <span class="comment"># nested calls</span>
+  <span class="keyword">ret</span> <span class="function">square</span>(<span class="variable">a</span>) <span class="operator">+</span> <span class="function">square</span>(<span class="variable">b</span>)
+<span class="operator">;</span>
 
-result := hypotenuse(3, 4)
-put('result = ' + str(result))</code></pre>
+<span class="variable">result</span> <span class="operator">:=</span> <span class="function">hypotenuse</span>(<span class="number">3</span>, <span class="number">4</span>)
+<span class="function">put</span>(<span class="string">'result = '</span> <span class="operator">+</span> <span class="function">str</span>(<span class="variable">result</span>))</code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -201,21 +201,21 @@ put('result = ' + str(result))</code></pre>
       <div class="text-sm text-gray-300 font-medium">args.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:repeat msg, times
-  i := 0
-  for i &lt; times
-    put(msg)
-    i = i + 1
-  ;
-;
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="operator">:</span><span class="function">repeat</span> <span class="variable">msg</span>, <span class="variable">times</span>
+  <span class="variable">i</span> <span class="operator">:=</span> <span class="number">0</span>
+  <span class="keyword">for</span> <span class="variable">i</span> <span class="operator">&lt;</span> <span class="variable">times</span>
+    <span class="function">put</span>(<span class="variable">msg</span>)
+    <span class="variable">i</span> <span class="operator">=</span> <span class="variable">i</span> <span class="operator">+</span> <span class="number">1</span>
+  <span class="operator">;</span>
+<span class="operator">;</span>
 
-repeat('hi', 3)
+<span class="function">repeat</span>(<span class="string">'hi'</span>, <span class="number">3</span>)
 
-:show_script_args
-  put('script name: ' + $0)
-  put('first arg: ' + $1)
-  put('second arg: ' + $2)
-;</code></pre>
+<span class="operator">:</span><span class="function">show_script_args</span>
+  <span class="function">put</span>(<span class="string">'script name: '</span> <span class="operator">+</span> <span class="variable">$0</span>)
+  <span class="function">put</span>(<span class="string">'first arg: '</span> <span class="operator">+</span> <span class="variable">$1</span>)
+  <span class="function">put</span>(<span class="string">'second arg: '</span> <span class="operator">+</span> <span class="variable">$2</span>)
+<span class="operator">;</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
