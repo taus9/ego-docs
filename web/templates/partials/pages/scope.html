@@ -18,13 +18,13 @@
       <div class="text-sm text-gray-300 font-medium">global_scope.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">greeting := 'hello'
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">greeting</span> <span class="operator">:=</span> <span class="string">'hello'</span>
 
-:say
-  put(greeting)
-;
+<span class="operator">:</span><span class="function">say</span>
+  <span class="function">put</span>(<span class="variable">greeting</span>)
+<span class="operator">;</span>
 
-say()</code></pre>
+<span class="function">say</span>()</code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -61,14 +61,14 @@ say()</code></pre>
       <div class="text-sm text-gray-300 font-medium">function_scope.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:add a, b
-  result := a + b
-  put(result)
-;
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="operator">:</span><span class="function">add</span> <span class="variable">a</span>, <span class="variable">b</span>
+  <span class="variable">result</span> <span class="operator">:=</span> <span class="variable">a</span> <span class="operator">+</span> <span class="variable">b</span>
+  <span class="function">put</span>(<span class="variable">result</span>)
+<span class="operator">;</span>
 
-add(1, 2)
+<span class="function">add</span>(<span class="number">1</span>, <span class="number">2</span>)
 
-put(result)  # error: result is not in scope here</code></pre>
+<span class="function">put</span>(<span class="variable">result</span>)  <span class="comment"># error: result is not in scope here</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -108,16 +108,16 @@ put(result)  # error: result is not in scope here</code></pre>
       <div class="text-sm text-gray-300 font-medium">block_scope.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">x := 1
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">x</span> <span class="operator">:=</span> <span class="number">1</span>
 
-if true
-  y := 2
-  put(x)
-  put(y)
-;
+<span class="keyword">if</span> <span class="keyword">true</span>
+  <span class="variable">y</span> <span class="operator">:=</span> <span class="number">2</span>
+  <span class="function">put</span>(<span class="variable">x</span>)
+  <span class="function">put</span>(<span class="variable">y</span>)
+<span class="operator">;</span>
 
-put(x)
-put(y)  # error: y only exists inside the if block</code></pre>
+<span class="function">put</span>(<span class="variable">x</span>)
+<span class="function">put</span>(<span class="variable">y</span>)  <span class="comment"># error: y only exists inside the if block</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -154,14 +154,14 @@ put(y)  # error: y only exists inside the if block</code></pre>
       <div class="text-sm text-gray-300 font-medium">lifetime.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:counter
-  i := 0
-  i = i + 1
-  put(i)
-;
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="operator">:</span><span class="function">counter</span>
+  <span class="variable">i</span> <span class="operator">:=</span> <span class="number">0</span>
+  <span class="variable">i</span> <span class="operator">=</span> <span class="variable">i</span> <span class="operator">+</span> <span class="number">1</span>
+  <span class="function">put</span>(<span class="variable">i</span>)
+<span class="operator">;</span>
 
-counter()  # prints 1
-counter()  # prints 1 again; i is new each call</code></pre>
+<span class="function">counter</span>()  <span class="comment"># prints 1</span>
+<span class="function">counter</span>()  <span class="comment"># prints 1 again; i is new each call</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
