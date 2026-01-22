@@ -23,7 +23,7 @@ func main() {
 	mux.HandleFunc("/docs/scope", app.ScopeAndLifetime)
 	mux.HandleFunc("/docs/control", app.ControlFlow)
 	mux.HandleFunc("/docs/expressions", app.ExpressionsAndOperators)
-	mux.HandleFunc("/docs/stdlib", app.StandardLibrary)
+	mux.HandleFunc("/docs/builtins", app.Builtins)
 	mux.HandleFunc("/docs/variables", app.VariablesAndConstants)
 	mux.HandleFunc("/docs/values", app.ValuesAndTypes)
 

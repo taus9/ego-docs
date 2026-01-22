@@ -43,8 +43,8 @@ func (a *App) ExpressionsAndOperators(w http.ResponseWriter, r *http.Request) {
 	a.Renderer.Partial(w, "expressions.html", nil)
 }
 
-func (a *App) StandardLibrary(w http.ResponseWriter, r *http.Request) {
-	a.Renderer.Partial(w, "stdlib.html", nil)
+func (a *App) Builtins(w http.ResponseWriter, r *http.Request) {
+	a.Renderer.Partial(w, "builtins.html", nil)
 }
 
 func (a *App) VariablesAndConstants(w http.ResponseWriter, r *http.Request) {
