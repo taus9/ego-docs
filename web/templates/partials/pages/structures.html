@@ -17,13 +17,13 @@
       <div class="text-sm text-gray-300 font-medium">arrays.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"># empty array
-arr := []
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="comment"># empty array</span>
+<span class="variable">arr</span> <span class="operator">:=</span> <span class="operator">[]</span>
 
-# new array with values
-arr = [1, 'two', true]
+<span class="comment"># new array with values</span>
+<span class="variable">arr</span> <span class="operator">=</span> <span class="operator">[</span><span class="number">1</span>, <span class="string">'two'</span>, <span class="keyword">true</span><span class="operator">]</span>
 
-put(arr[1])</code></pre>
+<span class="function">put</span>(<span class="variable">arr</span><span class="operator">[</span><span class="number">1</span><span class="operator">]</span>)</code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -70,13 +70,13 @@ put(arr[1])</code></pre>
       <div class="text-sm text-gray-300 font-medium">index_expr.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">arr := [10, 20, 30]
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">arr</span> <span class="operator">:=</span> <span class="operator">[</span><span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span><span class="operator">]</span>
 
-value := arr[1]
-put(value)
+<span class="variable">value</span> <span class="operator">:=</span> <span class="variable">arr</span><span class="operator">[</span><span class="number">1</span><span class="operator">]</span>
+<span class="function">put</span>(<span class="variable">value</span>)
 
-arr[1] = 99
-put(arr[1])</code></pre>
+<span class="variable">arr</span><span class="operator">[</span><span class="number">1</span><span class="operator">]</span> <span class="operator">=</span> <span class="number">99</span>
+<span class="function">put</span>(<span class="variable">arr</span><span class="operator">[</span><span class="number">1</span><span class="operator">]</span>)</code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -118,22 +118,22 @@ put(arr[1])</code></pre>
       <div class="text-sm text-gray-300 font-medium">maps.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">m := {
-  'key1': '1',
-  2: 2,
-  true: '3'
-}
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">m</span> <span class="operator">:=</span> <span class="operator">{</span>
+  <span class="string">'key1'</span><span class="operator">:</span> <span class="string">'1'</span>,
+  <span class="number">2</span><span class="operator">:</span> <span class="number">2</span>,
+  <span class="keyword">true</span><span class="operator">:</span> <span class="string">'3'</span>
+<span class="operator">}</span>
 
-put(m['key1'])
+<span class="function">put</span>(<span class="variable">m</span><span class="operator">[</span><span class="string">'key1'</span><span class="operator">]</span>)
 
-two := 2
-put(m[two])
+<span class="variable">two</span> <span class="operator">:=</span> <span class="number">2</span>
+<span class="function">put</span>(<span class="variable">m</span><span class="operator">[</span><span class="variable">two</span><span class="operator">]</span>)
 
-m['key4'] = 'four'
-put(m['key4'])
+<span class="variable">m</span><span class="operator">[</span><span class="string">'key4'</span><span class="operator">]</span> <span class="operator">=</span> <span class="string">'four'</span>
+<span class="function">put</span>(<span class="variable">m</span><span class="operator">[</span><span class="string">'key4'</span><span class="operator">]</span>)
 
-n := m['nokey']
-put(n)</code></pre>
+<span class="variable">n</span> <span class="operator">:=</span> <span class="variable">m</span><span class="operator">[</span><span class="string">'nokey'</span><span class="operator">]</span>
+<span class="function">put</span>(<span class="variable">n</span>)</code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -191,25 +191,25 @@ put(n)</code></pre>
       <div class="text-sm text-gray-300 font-medium">by_reference.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:bump_first arr
-  # modifies the same array the caller sees
-  arr[0] = arr[0] + 1
-;
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="operator">:</span><span class="function">bump_first</span> <span class="variable">arr</span>
+  <span class="comment"># modifies the same array the caller sees</span>
+  <span class="variable">arr</span><span class="operator">[</span><span class="number">0</span><span class="operator">]</span> <span class="operator">=</span> <span class="variable">arr</span><span class="operator">[</span><span class="number">0</span><span class="operator">]</span> <span class="operator">+</span> <span class="number">1</span>
+<span class="operator">;</span>
 
-nums := [1, 2, 3]
-other := nums        # points at the same array
+<span class="variable">nums</span> <span class="operator">:=</span> <span class="operator">[</span><span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span><span class="operator">]</span>
+<span class="variable">other</span> <span class="operator">:=</span> <span class="variable">nums</span>        <span class="comment"># points at the same array</span>
 
-bump_first(nums)
-put(nums[0])         # 2
-put(other[0])        # 2 (also changed)
+<span class="function">bump_first</span>(<span class="variable">nums</span>)
+<span class="function">put</span>(<span class="variable">nums</span><span class="operator">[</span><span class="number">0</span><span class="operator">]</span>)         <span class="comment"># 2</span>
+<span class="function">put</span>(<span class="variable">other</span><span class="operator">[</span><span class="number">0</span><span class="operator">]</span>)        <span class="comment"># 2 (also changed)</span>
 
-:set_flag m
-  m['done'] = true   # updates the original map
-;
+<span class="operator">:</span><span class="function">set_flag</span> <span class="variable">m</span>
+  <span class="variable">m</span><span class="operator">[</span><span class="string">'done'</span><span class="operator">]</span> <span class="operator">=</span> <span class="keyword">true</span>   <span class="comment"># updates the original map</span>
+<span class="operator">;</span>
 
-state := {}
-set_flag(state)
-put(state['done'])   # true</code></pre>
+<span class="variable">state</span> <span class="operator">:=</span> <span class="operator">{}</span>
+<span class="function">set_flag</span>(<span class="variable">state</span>)
+<span class="function">put</span>(<span class="variable">state</span><span class="operator">[</span><span class="string">'done'</span><span class="operator">]</span>)   <span class="comment"># true</span></code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
