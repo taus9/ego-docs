@@ -31,6 +31,6 @@ func main() {
 	fileServer := http.FileServer(http.Dir("./web/static/"))
 	mux.Handle("/static/", http.StripPrefix("/static/", fileServer))
 
-	log.Println("listening on :4000")
-	log.Fatal(http.ListenAndServe(":4000", mux))
+	log.Println("listening on :8080")
+	log.Fatal(http.ListenAndServe(":8080", mux))
 }
