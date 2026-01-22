@@ -32,11 +32,11 @@
         Returns a <em>new</em> array with <code class="text-gray-200">value</code>
         appended to the end. The original array is left unchanged.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">nums := [1, 2]
-more := append(nums, 3)
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="variable">nums</span> <span class="operator">:=</span> <span class="operator">[</span><span class="number">1</span>, <span class="number">2</span><span class="operator">]</span>
+<span class="variable">more</span> <span class="operator">:=</span> <span class="function">append</span>(<span class="variable">nums</span>, <span class="number">3</span>)
 
-put(len(nums))   # 2
-put(len(more))   # 3</code></pre>
+<span class="function">put</span>(<span class="function">len</span>(<span class="variable">nums</span>))   <span class="comment"># 2</span>
+<span class="function">put</span>(<span class="function">len</span>(<span class="variable">more</span>))   <span class="comment"># 3</span></code></pre>
     </div>
 
     <!-- len -->
@@ -48,14 +48,14 @@ put(len(more))   # 3</code></pre>
         Returns the number of elements in an array or map, or the
         number of characters in a string.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">name := 'ego'
-put(len(name))   # 3
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="variable">name</span> <span class="operator">:=</span> <span class="string">'ego'</span>
+<span class="function">put</span>(<span class="function">len</span>(<span class="variable">name</span>))   <span class="comment"># 3</span>
 
-arr := [10, 20, 30]
-put(len(arr))    # 3
+<span class="variable">arr</span> <span class="operator">:=</span> <span class="operator">[</span><span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span><span class="operator">]</span>
+<span class="function">put</span>(<span class="function">len</span>(<span class="variable">arr</span>))    <span class="comment"># 3</span>
 
-m := {'x': 1}
-put(len(m))      # 1</code></pre>
+<span class="variable">m</span> <span class="operator">:=</span> <span class="operator">{</span><span class="string">'x'</span><span class="operator">:</span> <span class="number">1</span><span class="operator">}</span>
+<span class="function">put</span>(<span class="function">len</span>(<span class="variable">m</span>))      <span class="comment"># 1</span></code></pre>
     </div>
 
     <!-- clear -->
@@ -67,13 +67,13 @@ put(len(m))      # 1</code></pre>
         Empties an existing array or map in-place and returns
         <code class="text-gray-200">nil</code>.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">items := [1, 2, 3]
-clear(items)
-put(len(items))  # 0
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="variable">items</span> <span class="operator">:=</span> <span class="operator">[</span><span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span><span class="operator">]</span>
+<span class="function">clear</span>(<span class="variable">items</span>)
+<span class="function">put</span>(<span class="function">len</span>(<span class="variable">items</span>))  <span class="comment"># 0</span>
 
-m := {'a': 1, 'b': 2}
-clear(m)
-put(len(m))      # 0</code></pre>
+<span class="variable">m</span> <span class="operator">:=</span> <span class="operator">{</span><span class="string">'a'</span><span class="operator">:</span> <span class="number">1</span>, <span class="string">'b'</span><span class="operator">:</span> <span class="number">2</span><span class="operator">}</span>
+<span class="function">clear</span>(<span class="variable">m</span>)
+<span class="function">put</span>(<span class="function">len</span>(<span class="variable">m</span>))      <span class="comment"># 0</span></code></pre>
     </div>
 
     <!-- copy -->
@@ -86,12 +86,12 @@ put(len(m))      # 0</code></pre>
         <code class="text-gray-200">dst</code> (arrays or maps) and returns
         the number of elements copied.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">src := [1, 2, 3]
-dst := []
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="variable">src</span> <span class="operator">:=</span> <span class="operator">[</span><span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span><span class="operator">]</span>
+<span class="variable">dst</span> <span class="operator">:=</span> <span class="operator">[]</span>
 
-n := copy(dst, src)
-put(n)        # 3
-put(dst[0])   # 1</code></pre>
+<span class="variable">n</span> <span class="operator">:=</span> <span class="function">copy</span>(<span class="variable">dst</span>, <span class="variable">src</span>)
+<span class="function">put</span>(<span class="variable">n</span>)        <span class="comment"># 3</span>
+<span class="function">put</span>(<span class="variable">dst</span><span class="operator">[</span><span class="number">0</span><span class="operator">]</span>)   <span class="comment"># 1</span></code></pre>
     </div>
 
     <!-- delete -->
@@ -105,11 +105,11 @@ put(dst[0])   # 1</code></pre>
         deleted, or <code class="text-gray-200">false</code> if the key
         was not found.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">m := {'a': 1, 'b': 2}
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="variable">m</span> <span class="operator">:=</span> <span class="operator">{</span><span class="string">'a'</span><span class="operator">:</span> <span class="number">1</span>, <span class="string">'b'</span><span class="operator">:</span> <span class="number">2</span><span class="operator">}</span>
 
-ok := delete(m, 'a')
-put(ok)        # true
-put(m['a'])    # nil</code></pre>
+<span class="variable">ok</span> <span class="operator">:=</span> <span class="function">delete</span>(<span class="variable">m</span>, <span class="string">'a'</span>)
+<span class="function">put</span>(<span class="variable">ok</span>)        <span class="comment"># true</span>
+<span class="function">put</span>(<span class="variable">m</span><span class="operator">[</span><span class="string">'a'</span><span class="operator">]</span>)    <span class="comment"># nil</span></code></pre>
     </div>
   </div>
 </section>
@@ -132,11 +132,11 @@ put(m['a'])    # nil</code></pre>
         Converts the value to an integer. Strings must contain a
         valid integer representation or this results in an error.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">n1 := int(3.9)
-n2 := int('42')
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="variable">n1</span> <span class="operator">:=</span> <span class="function">int</span>(<span class="number">3.9</span>)
+<span class="variable">n2</span> <span class="operator">:=</span> <span class="function">int</span>(<span class="string">'42'</span>)
 
-put(n1)       # 3
-put(n2 + 1)   # 43</code></pre>
+<span class="function">put</span>(<span class="variable">n1</span>)       <span class="comment"># 3</span>
+<span class="function">put</span>(<span class="variable">n2</span> <span class="operator">+</span> <span class="number">1</span>)   <span class="comment"># 43</span></code></pre>
     </div>
 
     <!-- float -->
@@ -148,10 +148,10 @@ put(n2 + 1)   # 43</code></pre>
         Converts the value to a floating-point number. Strings must
         contain a valid float representation.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">f1 := float(3)
-f2 := float('3.5')
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="variable">f1</span> <span class="operator">:=</span> <span class="function">float</span>(<span class="number">3</span>)
+<span class="variable">f2</span> <span class="operator">:=</span> <span class="function">float</span>(<span class="string">'3.5'</span>)
 
-put(f1 + f2)  # 6.5</code></pre>
+<span class="function">put</span>(<span class="variable">f1</span> <span class="operator">+</span> <span class="variable">f2</span>)  <span class="comment"># 6.5</span></code></pre>
     </div>
 
     <!-- str -->
@@ -163,8 +163,8 @@ put(f1 + f2)  # 6.5</code></pre>
         Returns a string representation of any value. Useful for
         building messages or debugging.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">msg := 'answer = ' + str(42)
-put(msg)</code></pre>
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="variable">msg</span> <span class="operator">:=</span> <span class="string">'answer = '</span> <span class="operator">+</span> <span class="function">str</span>(<span class="number">42</span>)
+<span class="function">put</span>(<span class="variable">msg</span>)</code></pre>
     </div>
 
     <!-- type -->
@@ -177,9 +177,9 @@ put(msg)</code></pre>
         <code class="text-gray-200">'int'</code> or
         <code class="text-gray-200">'array'</code>.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">put(type(10))        # 'int'
-put(type(3.14))      # 'float'
-put(type([1, 2, 3])) # 'array'</code></pre>
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="function">put</span>(<span class="function">type</span>(<span class="number">10</span>))        <span class="comment"># 'int'</span>
+<span class="function">put</span>(<span class="function">type</span>(<span class="number">3.14</span>))      <span class="comment"># 'float'</span>
+<span class="function">put</span>(<span class="function">type</span>(<span class="operator">[</span><span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span><span class="operator">]</span>)) <span class="comment"># 'array'</span></code></pre>
     </div>
   </div>
 </section>
@@ -201,8 +201,8 @@ put(type([1, 2, 3])) # 'array'</code></pre>
         Prints each argument on its own line. A newline is written
         after every value.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">put('one')
-put('two', 'three')  # two lines</code></pre>
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="function">put</span>(<span class="string">'one'</span>)
+<span class="function">put</span>(<span class="string">'two'</span>, <span class="string">'three'</span>)  <span class="comment"># two lines</span></code></pre>
     </div>
 
     <!-- puts -->
@@ -214,8 +214,8 @@ put('two', 'three')  # two lines</code></pre>
         Prints all arguments on a single line (typically separated by
         spaces) followed by a trailing newline.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">puts('hello,', 'world')
-# prints: hello, world</code></pre>
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="function">puts</span>(<span class="string">'hello,'</span>, <span class="string">'world'</span>)
+<span class="comment"># prints: hello, world</span></code></pre>
     </div>
 
     <!-- input -->
@@ -227,8 +227,8 @@ put('two', 'three')  # two lines</code></pre>
         Reads a single line of text from standard input. If a prompt
         string is provided, it is printed before reading.
       </p>
-      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200">name := input('Enter your name: ')
-puts('Hello,', name)</code></pre>
+      <pre class="mt-3 text-sm overflow-x-auto"><code class="text-gray-200"><span class="variable">name</span> <span class="operator">:=</span> <span class="function">input</span>(<span class="string">'Enter your name: '</span>)
+<span class="function">puts</span>(<span class="string">'Hello,'</span>, <span class="variable">name</span>)</code></pre>
     </div>
   </div>
 </section>
@@ -246,17 +246,17 @@ puts('Hello,', name)</code></pre>
       <div class="text-sm text-gray-300 font-medium">errors_builtin.ego</div>
       <div class="text-xs text-gray-500">example</div>
     </div>
-    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">:parse_int s
-  # return an error value on failure
-  if s == ''
-    ret error('empty string')
-  ;
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="operator">:</span><span class="function">parse_int</span> <span class="variable">s</span>
+  <span class="comment"># return an error value on failure</span>
+  <span class="keyword">if</span> <span class="variable">s</span> <span class="operator">==</span> <span class="string">''</span>
+    <span class="keyword">ret</span> <span class="function">error</span>(<span class="string">'empty string'</span>)
+  <span class="operator">;</span>
 
-  ret int(s)
-;
+  <span class="keyword">ret</span> <span class="function">int</span>(<span class="variable">s</span>)
+<span class="operator">;</span>
 
-result := parse_int('42')
-put(result)</code></pre>
+<span class="variable">result</span> <span class="operator">:=</span> <span class="function">parse_int</span>(<span class="string">'42'</span>)
+<span class="function">put</span>(<span class="variable">result</span>)</code></pre>
   </div>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
