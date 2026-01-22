@@ -2,7 +2,7 @@ const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
 const openBtn = document.getElementById("openSidebar");
 const closeBtn = document.getElementById("closeSidebar");
-let lastTarget = document.getElementById("link-0");
+let lastTarget = document.getElementById("link-start");
 
 const focusedClassName = "flex items-center gap-3 rounded-lg px-3 py-2 bg-gray-800 text-white font-medium cursor-pointer"
 const unfocusedClassName = "flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer"

@@ -3,10 +3,154 @@
     Errors and Diagnostics
   </h1>
   <p class="mt-3 text-lg text-gray-300 max-w-2xl">
-    This page will describe how Ego reports errors, what different error
-    messages mean, and how to interpret diagnostics from both the
-    interpreter and surrounding tooling.
+    Errors in Ego are designed for trust and debuggability: they are
+    explicit objects you can inspect, print, and pass around, and the
+    interpreter reports precise locations to help you fix problems quickly.
   </p>
+</section>
+
+<!-- Error Types -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Error Types</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Ego currently distinguishes between parser errors (before your
+    program runs) and runtime errors (while your program is executing).
+  </p>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Parser errors.</span>
+      These happen when the source text is not valid Ego code. Examples
+      include missing block terminators, unmatched brackets, or using
+      reserved words in the wrong place. The program does <em>not</em>
+      start running until all parser errors are fixed.
+    </div>
+
+    <div>
+      <span class="font-semibold">Runtime errors.</span>
+      These occur after parsing succeeds, while executing your program.
+      Examples include indexing past the end of an array, accessing a key
+      that does not exist in a map, or calling a function with the wrong
+      number or type of arguments.
+    </div>
+
+    <div>
+      <span class="font-semibold">Error objects.</span>
+      At runtime, errors are represented as regular Ego objects with
+      fields such as <code class="text-gray-200">'message'</code> (and
+      potentially others like file, line, and column) so you can inspect
+      and handle them from your code.
+    </div>
+  </div>
+</section>
+
+<!-- Error Behavior and Reporting -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Error Behavior</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    When an error occurs, Ego either halts execution and reports a
+    diagnostic, or—in many cases—lets you catch and handle the error
+    yourself using the <code class="text-gray-200">else</code> clause
+    and the built-in error value <code class="text-gray-200">$E</code>.
+  </p>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">When execution halts.</span>
+      Unhandled runtime errors cause the current program to stop. The
+      interpreter prints a message describing what went wrong along with
+      the file, line, and column where the error was raised.
+    </div>
+
+    <div>
+      <span class="font-semibold">Error messages.</span>
+      Error messages aim to be human-readable first, describing the kind
+      of failure (for example, &ldquo;index out of range&rdquo; or
+      &ldquo;key not found&rdquo;) and including any relevant dynamic
+      values.
+    </div>
+
+    <div>
+      <span class="font-semibold">Line and column reporting.</span>
+      Both parser and runtime errors report where they occurred. For
+      multi-line constructs, the location typically points to the
+      expression or statement that triggered the error, not just the
+      start of the block.
+    </div>
+  </div>
+</section>
+
+<!-- Handling Errors with else -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Handling Errors with <code class="text-gray-200">else</code></h2>
+  <p class="mt-2 text-lg text-gray-300">
+    Many operations that can fail support an inline
+    <code class="text-gray-200">else</code> clause for error handling.
+    If the operation succeeds, its value is returned. If it fails, the
+    <code class="text-gray-200">else</code> branch runs instead. The
+    built-in constant <code class="text-gray-200">$E</code> (also
+    referred to as <span class="font-mono">const E</span>) represents a
+    generic error object you can return from functions.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">inline-error-handling.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200">a := ['1', '2', '3']
+
+# inline error handling with else clause
+val := a[3] else
+    put('There was an error accessing the array...')
+    ret nil
+;
+
+
+# return built-in error value
+:get arr, index
+   ret arr[index] else $E
+;
+
+
+b := get(a, 3)
+
+# check if function returned an error object
+if error(b)
+    put(b['message'])
+else
+    put('Value: ' + b)
+;</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Inline handling.</span>
+      In the first example, the array access <code class="text-gray-200">a[3]</code>
+      will fail because the index is out of range. Instead of crashing,
+      the <code class="text-gray-200">else</code> block runs, prints a
+      message, and returns <code class="text-gray-200">nil</code> from
+      the surrounding function or script.
+    </div>
+
+    <div>
+      <span class="font-semibold">Returning <code class="text-gray-200">$E</code>.</span>
+      The <code class="text-gray-200">get</code> function uses
+      <code class="text-gray-200">ret arr[index] else $E</code> to
+      return either the value at <code class="text-gray-200">index</code>
+      or, on failure, the built-in error object <code class="text-gray-200">$E</code>.
+      This is a common pattern for propagating errors to callers.
+    </div>
+
+    <div>
+      <span class="font-semibold">Detecting errors.</span>
+      The <code class="text-gray-200">error(x)</code> predicate checks
+      whether a value is an error object. Callers can branch on this to
+      decide whether to show an error message (such as
+      <code class="text-gray-200">b['message']</code>) or proceed with a
+      successful value.
+    </div>
+  </div>
 </section>
 
 <!-- Navigation: Previous / Next -->
@@ -14,7 +158,7 @@
   <div class="flex flex-col sm:flex-row gap-3">
     <button
       type="button"
-      onclick="document.getElementById('link-10')?.click()"
+      onclick="document.getElementById('link-scope')?.click()"
       class="inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 bg-gray-900 text-gray-200 border border-gray-700 hover:bg-gray-800 cursor-pointer w-full sm:w-auto"
     >
       <span aria-hidden="true">&larr;</span>
