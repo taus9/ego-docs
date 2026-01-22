@@ -118,6 +118,8 @@
 <span class="comment"># check if function returned an error object</span>
 <span class="keyword">if</span> <span class="function">error</span>(<span class="variable">b</span>)
   <span class="function">put</span>(<span class="variable">b</span><span class="operator">[</span><span class="string">'message'</span><span class="operator">]</span>)
+  <span class="function">put</span>(<span class="variable">b</span><span class="operator">[</span><span class="string">'line'</span><span class="operator">]</span>)
+  <span class="function">put</span>(<span class="variable">b</span><span class="operator">[</span><span class="string">'column'</span><span class="operator">]</span>)
 <span class="keyword">else</span>
   <span class="function">put</span>(<span class="string">'Value: '</span> <span class="operator">+</span> <span class="variable">b</span>)
 <span class="operator">;</span></code></pre>
