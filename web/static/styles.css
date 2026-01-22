@@ -1,0 +1,44 @@
+:root {
+	/* Code syntax colors for Ego examples */
+	--ego-code-keyword: #569cd6;  /* keywords (VS Code blue) */
+	--ego-code-string: #ce9178;   /* strings */
+	--ego-code-number: #b5cea8;   /* numbers */
+	--ego-code-variable: #d4d4d4; /* variables / identifiers (default fg) */
+	--ego-code-function: #c8c063; /* function names (slightly darker) */
+	--ego-code-comment: #6a9955;  /* comments */
+	--ego-code-operator: #d4d4d4; /* operators */
+	--ego-code-default: #d4d4d4;  /* everything else */
+}
+
+.keyword {
+    color: var(--ego-code-keyword);
+}
+
+.string {
+    color: var(--ego-code-string);
+}
+
+.number {
+    color: var(--ego-code-number);
+}
+
+.variable {
+    color: var(--ego-code-variable);
+}
+
+.function {
+    color: var(--ego-code-function);
+}
+
+.comment {
+    color: var(--ego-code-comment);
+    font-style: italic;
+}
+
+.default {
+    color: var(--ego-code-default);
+}
+
+.operator {
+	color: var(--ego-code-operator);
+}
