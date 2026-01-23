@@ -42,3 +42,25 @@
 .operator {
 	color: var(--ego-code-operator);
 }
+
+/* HTMX loading indicator for main content */
+#loading-indicator {
+	opacity: 0;
+	transition: opacity 150ms ease-in-out;
+}
+
+#loading-indicator.htmx-request {
+	opacity: 1;
+}
+
+@keyframes loading-bar {
+	0% {
+		transform: translateX(-100%);
+	}
+	50% {
+		transform: translateX(50%);
+	}
+	100% {
+		transform: translateX(200%);
+	}
+}
