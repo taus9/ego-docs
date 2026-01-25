@@ -36,10 +36,15 @@
 
     <div>
       <span class="font-semibold">Error objects.</span>
-      At runtime, errors are represented as regular Ego objects with
-      fields such as <code class="text-gray-200">'message'</code> (and
-      potentially others like file, line, and column) so you can inspect
-      and handle them from your code.
+      At runtime, errors are implemented as maps with three keys:
+      <code class="text-gray-200">'message'</code>,
+      <code class="text-gray-200">'line'</code>, and
+      <code class="text-gray-200">'column'</code>. Built-in errors fill in all
+      three fields for you, and when you create your own errors you
+      control the <code class="text-gray-200">'message'</code> while Ego
+      still records where the error came from via
+      <code class="text-gray-200">'line'</code> and
+      <code class="text-gray-200">'column'</code>.
     </div>
   </div>
 </section>
@@ -51,7 +56,7 @@
     When an error occurs, Ego either halts execution and reports a
     diagnostic, or—in many cases—lets you catch and handle the error
     yourself using the <code class="text-gray-200">else</code> clause
-    and the built-in error value <code class="text-gray-200">$E</code>.
+    and the built-in error value <code class="text-gray-200">$e</code>.
   </p>
 
   <div class="mt-4 space-y-3 text-base text-gray-300">
@@ -88,7 +93,7 @@
     <code class="text-gray-200">else</code> clause for error handling.
     If the operation succeeds, its value is returned. If it fails, the
     <code class="text-gray-200">else</code> branch runs instead. The
-    built-in constant <code class="text-gray-200">$E</code> (also
+    built-in constant <code class="text-gray-200">$e</code> (also
     referred to as <span class="font-mono">const E</span>) represents a
     generic error object you can return from functions.
   </p>
@@ -109,14 +114,14 @@
 
 <span class="comment"># return built-in error value</span>
 <span class="operator">:</span><span class="function">get</span> <span class="variable">arr</span>, <span class="variable">index</span>
-  <span class="keyword">ret</span> <span class="variable">arr</span><span class="operator">[</span><span class="variable">index</span><span class="operator">]</span> <span class="keyword">else</span> <span class="variable">$E</span>
+  <span class="keyword">ret</span> <span class="variable">arr</span><span class="operator">[</span><span class="variable">index</span><span class="operator">]</span> <span class="keyword">else</span> <span class="variable">$e</span>
 <span class="operator">;</span>
 
 
 <span class="variable">b</span> <span class="operator">:=</span> <span class="function">get</span>(<span class="variable">a</span>, <span class="number">3</span>)
 
 <span class="comment"># check if function returned an error object</span>
-<span class="keyword">if</span> <span class="function">error</span>(<span class="variable">b</span>)
+<span class="keyword">if</span> !<span class="function">ok</span>(<span class="variable">b</span>)
   <span class="function">put</span>(<span class="variable">b</span><span class="operator">[</span><span class="string">'message'</span><span class="operator">]</span>)
   <span class="function">put</span>(<span class="variable">b</span><span class="operator">[</span><span class="string">'line'</span><span class="operator">]</span>)
   <span class="function">put</span>(<span class="variable">b</span><span class="operator">[</span><span class="string">'column'</span><span class="operator">]</span>)
@@ -136,21 +141,83 @@
     </div>
 
     <div>
-      <span class="font-semibold">Returning <code class="text-gray-200">$E</code>.</span>
+      <span class="font-semibold">Returning <code class="text-gray-200">$e</code>.</span>
       The <code class="text-gray-200">get</code> function uses
-      <code class="text-gray-200">ret arr[index] else $E</code> to
+      <code class="text-gray-200">ret arr[index] else $e</code> to
       return either the value at <code class="text-gray-200">index</code>
-      or, on failure, the built-in error object <code class="text-gray-200">$E</code>.
+      or, on failure, the built-in error object <code class="text-gray-200">$e</code>.
       This is a common pattern for propagating errors to callers.
     </div>
 
     <div>
       <span class="font-semibold">Detecting errors.</span>
-      The <code class="text-gray-200">error(x)</code> predicate checks
-      whether a value is an error object. Callers can branch on this to
-      decide whether to show an error message (such as
-      <code class="text-gray-200">b['message']</code>) or proceed with a
-      successful value.
+      The <code class="text-gray-200">ok(x)</code> predicate returns
+      <code class="text-gray-200">true</code> when <code class="text-gray-200">x</code>
+      is <em>not</em> an error and <code class="text-gray-200">false</code>
+      when it is. Callers can branch on this to decide whether to show an
+      error message (such as <code class="text-gray-200">b['message']</code>)
+      or proceed with a successful value.
+    </div>
+  </div>
+</section>
+
+<!-- Creating Custom Errors -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">Creating Your Own Errors</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    In addition to using the built-in <code class="text-gray-200">$e</code>,
+    you can create your own error objects with the
+    <code class="text-gray-200">error(message)</code> builtin. These errors
+    behave like any other error value in Ego: they are maps with
+    <code class="text-gray-200">'message'</code>,
+    <code class="text-gray-200">'line'</code>, and
+    <code class="text-gray-200">'column'</code> keys, though
+    <code class="text-gray-200">error(message)</code> only lets you set the
+    <code class="text-gray-200">'message'</code> and the runtime fills in the
+    location. You can still check them with
+    <code class="text-gray-200">ok(x)</code>.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">custom-errors.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="operator">:</span><span class="function">getCmd</span>
+  <span class="variable">cmd</span> <span class="operator">:=</span> <span class="function">input</span>(<span class="string">'Enter a command: '</span>)
+
+  <span class="keyword">if</span> <span class="variable">cmd</span> <span class="operator">==</span> <span class="string">''</span>
+    <span class="keyword">ret</span> <span class="function">error</span>(<span class="string">'No command was entered'</span>)
+  <span class="operator">;</span>
+
+  <span class="keyword">ret</span> <span class="variable">cmd</span>
+<span class="operator">;</span>
+
+<span class="variable">cmd</span> <span class="operator">:=</span> <span class="function">getCmd</span>()
+
+<span class="keyword">if</span> !<span class="function">ok</span>(<span class="variable">cmd</span>)
+  <span class="function">put</span>(<span class="string">'Error: '</span> <span class="operator">+</span> <span class="variable">cmd</span><span class="operator">[</span><span class="string">'message'</span><span class="operator">]</span>)
+<span class="keyword">else</span>
+  <span class="function">put</span>(<span class="variable">cmd</span>)
+<span class="operator">;</span></code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Raising custom errors.</span>
+      The <code class="text-gray-200">getCmd</code> function calls
+      <code class="text-gray-200">error('No command was entered')</code>
+      when the user submits an empty command. This produces an error
+      object with a <code class="text-gray-200">'message'</code> that
+      can be inspected later.
+    </div>
+
+    <div>
+      <span class="font-semibold">Checking with <code class="text-gray-200">ok</code>.</span>
+      After calling <code class="text-gray-200">getCmd()</code>, the code
+      uses <code class="text-gray-200">if !ok(cmd)</code> to see whether
+      an error was returned. If so, it prints the error message; otherwise,
+      it proceeds with the successful command value.
     </div>
   </div>
 </section>
