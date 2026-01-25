@@ -79,7 +79,90 @@
   </div>
 </section>
 
-<!-- 7.2 Loops -->
+<!-- 7.2 When Expressions -->
+<section class="mb-10">
+  <h2 class="text-2xl font-bold">When Expressions</h2>
+  <p class="mt-2 text-lg text-gray-300">
+    A <code class="text-gray-200">when</code> expression lets you match a value
+    against multiple <code class="text-gray-200">is</code> branches, with an
+    optional <code class="text-gray-200">else</code> branch that runs when
+    nothing matches.
+  </p>
+
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">when_statement.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">cmd</span> <span class="operator">:=</span> <span class="function">input</span>(<span class="string">'Please enter a command: '</span>)
+
+<span class="keyword">when</span> <span class="variable">cmd</span>
+
+  <span class="comment"># is block</span>
+  <span class="keyword">is</span> <span class="string">'cd'</span>
+    <span class="function">put</span>(<span class="string">'Changing directory...'</span>)
+  <span class="operator">;</span>
+  
+  <span class="comment"># is single line</span>
+  <span class="keyword">is</span> <span class="string">'ls'</span>: <span class="function">put</span>(<span class="string">'Listing files...'</span>)
+  
+  <span class="comment"># else block. else can also be signle line</span>
+  <span class="keyword">else</span>
+    <span class="function">put</span>(<span class="string">'Unknown command...'</span>)
+  <span class="operator">;</span>
+<span class="operator">;</span></code></pre>
+  </div>
+
+  <p class="mt-2 text-lg text-gray-300">You can also use <code class="text-gray-200">when</code> as an expression.</p>
+  <div class="mt-4 rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+    <div class="px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+      <div class="text-sm text-gray-300 font-medium">when_expression.ego</div>
+      <div class="text-xs text-gray-500">example</div>
+    </div>
+    <pre class="p-5 text-base overflow-x-auto"><code class="text-gray-200"><span class="variable">errorCode</span> <span class="operator">:=</span> <span class="number">3</span>
+
+<span class="variable">msg</span> <span class="operator">:=</span> <span class="keyword">when</span> <span class="variable">errorCode</span>
+  <span class="keyword">is</span> <span class="number">1</span>: <span class="string">'Invalid user'</span>
+  <span class="keyword">is</span> <span class="number">2</span>: <span class="string">'Invalid password'</span>
+  <span class="keyword">else</span>: <span class="string">'Unknown error'</span>
+<span class="operator">;</span>
+
+<span class="function">put</span>(<span class="variable">msg</span>)</code></pre>
+  </div>
+
+  <div class="mt-4 space-y-3 text-base text-gray-300">
+    <div>
+      <span class="font-semibold">Matching with is.</span>
+      A <code class="text-gray-200">when</code> expression evaluates its selector
+      once and compares it against each <code class="text-gray-200">is</code>
+      branch in order. The first matching branch runs and the rest are skipped.
+    </div>
+
+    <div>
+      <span class="font-semibold">Blocks and single lines.</span>
+      Each <code class="text-gray-200">is</code> branch can be a multi-line
+      block terminated by <code class="text-gray-200">;</code>, or a single-line
+      form written as <code class="text-gray-200">is value: expr</code>.
+    </div>
+
+    <div>
+      <span class="font-semibold">else branch.</span>
+      An optional <code class="text-gray-200">else</code> branch handles all
+      unmatched values. Only one <code class="text-gray-200">else</code>
+      is allowed in a <code class="text-gray-200">when</code> expression, and it
+      can also use the single-line form <code class="text-gray-200">else: expr</code>.
+    </div>
+
+    <div>
+      <span class="font-semibold">When as an expression.</span>
+      When you assign from <code class="text-gray-200">when</code>, the whole
+      expression evaluates to the value of the branch that runs, just like
+      <code class="text-gray-200">if</code> expressions.
+    </div>
+  </div>
+</section>
+
+<!-- 7.3 Loops -->
 <section class="mb-10">
   <h2 class="text-2xl font-bold">Loops</h2>
   <p class="mt-2 text-lg text-gray-300">
@@ -179,7 +262,7 @@
   </div>
 </section>
 
-<!-- 7.3 Loop Control -->
+<!-- 7.4 Loop Control -->
 <section class="mb-10">
   <h2 class="text-2xl font-bold">Loop Control</h2>
   <p class="mt-2 text-lg text-gray-300">
